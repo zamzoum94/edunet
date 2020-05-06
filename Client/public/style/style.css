@@ -1,0 +1,23 @@
+.categoryBorder {
+    border: solid;
+    border-width: 1px;
+    height: 200px;
+    margin-left: 30px;
+}
+.featureCategory{
+    height: 300px;
+
+}
+.featureTeachers{
+    height: 450px;
+}
+.featureCourses{
+    height: 400px;
+}
+.featureForm{
+    
+    height: 400px;
+}
+.featureChoose{
+    height: 100px;
+}
