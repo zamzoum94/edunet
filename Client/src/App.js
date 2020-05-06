@@ -1,14 +1,14 @@
 import React from 'react';
 
 import Home from './modules/home';
+import Header from './modules/navbar'
 
 class App extends React.Component {
   render(){
     return (
       <div className='container'>
-      <Home/>
-
-
+        <Header/>
+        <Home/>
     </div>
     );
   }
