@@ -9,6 +9,10 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+app.use('/auth', routes.auth);
+
+
+
 
 
 const port = process.env.PORT || 8080;
