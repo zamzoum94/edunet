@@ -11,7 +11,8 @@ export default class ChooseUs extends React.Component{
                     </ol>
                     <div className="carousel-inner">
                         <div className="carousel-item active">
-                        <img src="https://d194ip2226q57d.cloudfront.net/images/Best-Float-Trips_Niangua_CO-Shutterstock.original.jpg" className="d-block w-100" alt="..."></img>
+                        <img src="https://d194ip2226q57d.cloudfront.net/images/Best-Float-Trips_Niangua_CO-Shutterstock.original.jpg
+" className="d-block w-100" alt="..."></img>
                         <div className="carousel-caption d-none d-md-block">
                             <h5>First slide label</h5>
                             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
