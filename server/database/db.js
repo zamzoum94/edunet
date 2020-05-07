@@ -94,8 +94,8 @@ student.belongsToMany(course, {through: course_student});
 course.belongsToMany(student, {through: course_student});
 
 
-course.hasOne(teacher);
-teacher.hasMany(course);
+course.belongsTo(teacher);
+teacher.hasMany(course, {foreignKey: "teacherId"});
 video.belongsTo(course);
 course.hasMany(video);
 

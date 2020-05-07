@@ -9,8 +9,8 @@ module.exports = (req, res, next) =>{
                 next(Error('Failed to authenticate token'))
             }
             else{
-                req.decoded = decoded;
-                next();
+                req.user = decoded;
+                next(req.user);
             }
         })
     }
