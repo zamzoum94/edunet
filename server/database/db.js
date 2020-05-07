@@ -14,7 +14,17 @@ const student = sql.define('student',{
         unique: true
     },
     password : db.STRING,
-    photo : db.STRING
+    photo : db.STRING,
+    createdAt: {
+        allowNull: false,
+        type: db.DATE,
+        defaultValue: db.NOW
+      },
+      updatedAt: {
+        allowNull: false,
+        type: db.DATE,
+        defaultValue: db.NOW
+      }
 });
 
 const teacher = sql.define('teacher',{
@@ -31,21 +41,51 @@ const teacher = sql.define('teacher',{
     password : db.STRING,
     github: db.STRING,
     linkedIn: db.STRING,
-    photo : db.STRING
+    photo : db.STRING,
+    createdAt: {
+        allowNull: false,
+        type: db.DATE,
+        defaultValue: db.NOW
+      },
+      updatedAt: {
+        allowNull: false,
+        type: db.DATE,
+        defaultValue: db.NOW
+      }
 });
 
 const course = sql.define('course',{
     title : db.STRING,
     category : db.STRING,
     description :db.STRING,
-    photo : db.STRING
+    photo : db.STRING,
+    createdAt: {
+        allowNull: false,
+        type: db.DATE,
+        defaultValue: db.NOW
+      },
+      updatedAt: {
+        allowNull: false,
+        type: db.DATE,
+        defaultValue: db.NOW
+      }
 });
 
 
 const video = sql.define('video',{
     title : db.STRING,
     description :db.STRING,
-    url : db.STRING
+    url : db.STRING,
+    createdAt: {
+        allowNull: false,
+        type: db.DATE,
+        defaultValue: db.NOW
+      },
+      updatedAt: {
+        allowNull: false,
+        type: db.DATE,
+        defaultValue: db.NOW
+      }
 });
 
 const course_student = sql.define('course_student',{});
@@ -64,6 +104,8 @@ course.sync();
 video.sync();
 teacher.sync();
 course_student.sync();
+
+
 
 module.exports.Student = student;
 module.exports.Course = course;

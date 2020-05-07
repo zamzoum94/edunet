@@ -13,6 +13,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/auth', routes.auth);
+app.use('/courses', routes.courses);
+
+
 
 
 
