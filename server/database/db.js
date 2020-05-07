@@ -53,7 +53,7 @@ const course_student = sql.define('course_student',{});
 student.belongsToMany(course, {through: course_student});
 course.belongsToMany(student, {through: course_student});
 
-//course.belongsTo(teacher);
+
 course.hasOne(teacher);
 teacher.hasMany(course);
 video.belongsTo(course);
