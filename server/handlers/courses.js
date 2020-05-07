@@ -33,3 +33,37 @@ exports.createCourses = async (req, res, next) => {
         next(err)
     }
 }
+
+exports.getCourse = async (req, res, next) => {
+    try{
+        const {id} = req.params
+        const course = await db.Course.findOne({where: {id : id}})
+
+        if (!course){
+            res.status(404).json(" No course with this id")
+        }
+        res.status(200).json(course)
+    }
+    catch(err){
+        res.status(400)
+        next(err)
+    }
+}
+
+exports.deleteCourses= async (req, res, next) => {
+    try{
+        const {id} = req.params;
+        const course = await db.Course.findOne({where: {id : id}})
+        if (!course){
+            res.status(404).json(" No course with this id")
+        }
+        else{
+            await course.destroy()
+            res.status(202).json(course)
+        }
+    }
+    catch(err){
+        res.status(400)
+        next(err)
+    }
+}

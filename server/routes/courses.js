@@ -8,10 +8,9 @@ router
 
     .post(handler.createCourses)
 
-/*router
+router
     .route('/:id')
     .get(handler.getCourse)
     .delete(handler.deleteCourses)
-    .put(handler.updateCourse)*/
 
 module.exports = router;
