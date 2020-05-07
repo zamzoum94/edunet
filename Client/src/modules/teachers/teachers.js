@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom"
 let obj ={name :'book',desciption:'hello', img : 'https://w0.pngwave.com/png/345/892/%E3%83%81%E3%83%A3%E3%83%BC%E3%83%88%E5%BC%8F-middle-school-juku-%E6%95%B0%E5%AD%A6-lecturer-teacher-man-png-clip-art.png'}
 
 let arr = [], max = 10;
@@ -24,7 +25,7 @@ export default class Teachers extends React.Component{
                                         <p className='card-text'>
                                             {element.desciption}
                                         </p>
-                                        <button type='submit' className='btn btn-primary'>Check course</button>
+                                        <Link to="/teacher"><button type='submit' className='btn btn-primary'>Check profil</button></Link>
                                     </div>
                                 </div>
                             </div>

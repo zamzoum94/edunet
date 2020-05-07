@@ -16,7 +16,11 @@ export default class Navbar extends React.Component{
                             <Link className="nav-item nav-link" to="/Courses">Courses</Link>
                         </div>
                     </div>
-                    </nav>
+                    <form className="form-inline my-2 my-lg-0">
+                        <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+                        <Link to= "/search"><button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button></Link>
+                    </form>
+                </nav>
             </div>
         )
     }
