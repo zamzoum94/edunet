@@ -1,5 +1,6 @@
 const db = require('../database/db');
 const bcrypt = require('bcrypt');
+const jwt = require ('jsonwebtoken');
 
 exports.signUp = async(req, res, next) => {
     try{
@@ -14,7 +15,9 @@ exports.signUp = async(req, res, next) => {
                 linkedIn : req.body.linkedIn,
                 photo : req.body.photo || "https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png"
             });
-            res.status(201).json(`Welcome ${teacher.first} ${teacher.last}. plz check your email to confirm your account`)
+            const {id, email} = teacher
+            const token = jwt.sign({id, email}, process.env.SECRET)
+            res.status(201).json({id, email, token})
         }
 
         else if(req.body.role === 'student'){
@@ -25,7 +28,9 @@ exports.signUp = async(req, res, next) => {
                 password : hashedPassword,
                 photo : req.body.photo || "https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png"
             });
-            res.status(201).json(`Welcome ${student.first} ${student.last}. plz check your email to confirm your account`)
+            const {id, email} = student
+            const token = jwt.sign({id, email}, process.env.SECRET)
+            res.status(201).json({id, email, token})
         }
     }
     catch(e)
@@ -47,10 +52,12 @@ exports.login = async(req, res, next) =>{
             else{
                 const valid = await bcrypt.compare(req.body.password, user.password);
                 if(!valid){
-                    res.send('not valid password');
+                    res.status(404).send('not valid password');
                 }
                 else{
-                    res.send('login success')
+                    const {id, email} = user
+                    const token = jwt.sign({id, email}, process.env.SECRET)
+                    res.status(200).json({id, email, token})
                 }
             }
 
