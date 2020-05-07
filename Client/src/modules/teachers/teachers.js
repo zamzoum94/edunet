@@ -6,9 +6,7 @@ for(let i = 0; i < max; i++){
     arr.push(obj);
 }
 export default class Teachers extends React.Component{
-    constructor(props){
-        super(props);
-    }
+    
 
     render(){
         return(
