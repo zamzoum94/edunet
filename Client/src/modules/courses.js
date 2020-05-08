@@ -1,8 +1,8 @@
 
 import React from 'react';
 import {Link} from 'react-router-dom';
-
-let obj = {name : 'book', desciption:'hello', img : 'https://i.ytimg.com/vi/SQJrYw1QvSQ/maxresdefault.jpg'};
+let id = 0;
+let obj = {name : 'book', desciption:'hello', img : 'https://i.ytimg.com/vi/SQJrYw1QvSQ/maxresdefault.jpg', id: ++id};
 let arr = [], max = 10;
 for(let i = 0; i < max; i++){
     arr.push(obj);
@@ -28,7 +28,7 @@ export default class Courses extends React.Component{
                                         <p className='card-text'>
                                             {element.desciption}
                                         </p>
-                                        <Link to='/course/5'><button type='submit' className='btn btn-primary'>Check course</button></Link>
+                                        <Link to={'/course/'+obj.id}><button type='submit' className='btn btn-primary'>Check course</button></Link>
                                     </div>
                                 </div>
                             </div>

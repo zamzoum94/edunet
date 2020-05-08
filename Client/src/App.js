@@ -7,6 +7,7 @@ import Teacher from './modules/teacher';
 import Search from "./modules/search";
 import Course from './modules/course';
 import Teachers from './modules/teachers/teachers'
+import SearchByCategory  from './modules/searchbycategory';
 
 import TeacherLog from './modules/profile/teacherlog'
 
@@ -22,10 +23,11 @@ export default class App  extends React.Component {
           <Route exact path='/' component={Home}></Route>
           <Route path='/teachers' component={Teachers}></Route>
           <Route path='/courses' component={Courses}></Route>
-          <Route path='/teacher/:id' component={Teacher}></Route>
-          <Route path='/search' component={Search}></Route>
+          <Route path='/teacher/:name' component={Teacher}></Route>
+          <Route path='/search/:value' component={Search}></Route>
           <Route path='/teacherprofile' component={TeacherLog}/>
           <Route path='/course/:id' component={Course}/>
+          <Route path='/searchByCategory/:category' component={SearchByCategory}/>
        </div>
     </BrowserRouter>
     );

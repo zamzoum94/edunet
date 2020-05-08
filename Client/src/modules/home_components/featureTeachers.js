@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 
 export default class FeatureTeachers extends React.Component {
@@ -16,7 +17,7 @@ export default class FeatureTeachers extends React.Component {
                                 <div className='card-text'>
                                     Text goes here
                                 </div>
-                                <a href="#" className="card-link">Teacher link</a>
+                                <Link to={'/teacher/Johnsnow'}><a href="" className="card-link">Teacher link</a></Link>
                             </div>
                         </div>
                     </div>
@@ -27,7 +28,7 @@ export default class FeatureTeachers extends React.Component {
                                 <div className='card-text'>
                                     Text goes here
                                 </div>
-                                <a href="#" class="card-link">Teacher link</a>
+                                <Link to='/teacher/BradPitt'><a href="" class="card-link">Teacher link</a></Link>
                             </div>
                         </div>
                     </div>
@@ -38,7 +39,7 @@ export default class FeatureTeachers extends React.Component {
                                 <div className='card-text'>
                                     Text goes here
                                 </div>
-                                <a href="#" class="card-link">Teacher link</a>
+                                <Link to='/teacher/JohnCarter'><a href="#" class="card-link">Teacher link</a></Link>
                             </div>
                         </div>
                     </div>

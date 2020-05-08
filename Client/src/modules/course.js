@@ -21,7 +21,7 @@ let obj = {
 export default class Course extends React.Component{
     constructor(props){
         super(props);
-        
+        console.log(props.match.params.id);
     }
 
     componentWillReceiveProps(props){
