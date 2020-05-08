@@ -17,14 +17,16 @@ exports.createCourses = async (req, res, next) => {
             title,
             description,
             category,
-            photo
+            photo,
+            teacherId
         }= req.body
 
         const course = await db.Course.create({
             title,
             description,
             category,
-            photo
+            photo,
+            teacherId
         })
         res.status(201).json(course)
     }

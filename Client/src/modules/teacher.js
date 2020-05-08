@@ -4,7 +4,14 @@ import React from 'react';
 export default class Teacher extends React.Component{
     constructor(props){
         super(props);
+        
     }
+    
+    componentWillReceiveProps(props){
+        this.state = ({
+            idTeacher : props.match.params.id
+        })
+    }    
 
     render(){
         return(
