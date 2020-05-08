@@ -3,6 +3,24 @@ import React from 'react';
 export default class Register extends React.Component{
     constructor(props){
         super(props);
+        this.state={
+            role:null,
+            firstName :null,
+            lastName : null,
+            email : null,
+            password : null,
+            image : null
+        }
+    }
+    // collect values from inputs
+    handleInput(event){
+        let target = event.target.name;
+        let value = event.target.value;
+        this.state[target]=value;
+        
+    }
+    handlSubmit(event){
+        event.preventDefault();
     }
 
     render(){
@@ -12,27 +30,27 @@ export default class Register extends React.Component{
                   <div className='form-group'>
                       <div className='row'>
                           <div className='col-md'>
-                              <input className='form-control' type='text' placeholder='First name' name='firstName'/>
+                              <input className='form-control' type='text' placeholder='First name' name='firstName' onChange={this.handleInput.bind(this)}/>
                           </div>
                       </div>
                       <div className='row'>
                           <div className='col-md'>
-                              <input className='form-control' type='text' placeholder='Last name' name='lastName'/>
+                              <input className='form-control' type='text' placeholder='Last name' name='lastName'onChange={this.handleInput.bind(this)}/>
                           </div>
                       </div>
                       <div className='row'>
                           <div className='col-md'>
-                              <input className='form-control' type='email' placeholder='Email' name='email'/>
+                              <input className='form-control' type='email' placeholder='Email' name='email'onChange={this.handleInput.bind(this)}/>
                           </div>
                       </div>
                       <div className='row'>
                           <div className='col-md'>
-                              <input className='form-control' type='password' placeholder='Password' name='password'/>
+                              <input className='form-control' type='password' placeholder='Password' name='password'onChange={this.handleInput.bind(this)}/>
                           </div>
                       </div>
                       <div className='row'>
                           <div className='col-md'>
-                              <input className='form-control' type='text' placeholder='Picture' name='urlPicture'/>
+                              <input className='form-control' type='text' placeholder='Picture' name='image'onChange={this.handleInput.bind(this)}/>
                           </div>
                       </div>
                       <div className='row'>
@@ -44,13 +62,13 @@ export default class Register extends React.Component{
                           <div className='row'>
                               <div className='col-md'>
                                   <div className='form-check'>
-                                      <input className='form-check-input' type='radio' name='role' value='teacher' checked/>
+                                      <input className='form-check-input' type='radio' name='role' value='teacher' onChange={this.handleInput.bind(this)}/>
                                       <label className = 'form-check-label' htmlFor='role'>Teacher</label>
                                   </div>
                               </div>
                               <div className='col-md'>
                                   <div className='form-check'>
-                                      <input className='form-check-input' type='radio' name='role' value='student'/>
+                                      <input className='form-check-input' type='radio' name='role' value='student'onChange={this.handleInput.bind(this)}/>
                                       <label className = 'form-check-label' htmlFor='role'>Student</label>
                                   </div>
                               </div>
