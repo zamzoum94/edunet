@@ -1,4 +1,9 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+
+
+
+let courses = [{name : 'Mekla', id:0}, {name : 'Noum', id:1}]
 
 
 export default class Teacher extends React.Component{
@@ -9,7 +14,7 @@ export default class Teacher extends React.Component{
     
     componentWillReceiveProps(props){
         this.state = ({
-            idTeacher : props.match.params.id
+            name : props.match.params.name
         })
     }    
 
@@ -29,9 +34,15 @@ export default class Teacher extends React.Component{
                     <div className='row'>
                         <div className='col-md-6'>
                             <h2>Teacher Courses</h2>
-                        </div>
-                        <div className='col-md-6'>
-                            <h2>Teacher courses rating</h2>
+                            {courses.map((element, index)=>{
+                                return(
+                                    <div className='row' key ={index}>
+                                        <div className='col-md'>
+                                            <Link to={'/course/'+element.id}><h4>{element.name}</h4></Link>
+                                        </div>
+                                    </div>
+                                )
+                            })}
                         </div>
                     </div>
                 </div>

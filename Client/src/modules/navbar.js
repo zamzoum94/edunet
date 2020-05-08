@@ -6,12 +6,22 @@ export default class Navbar extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            id : 'option1'
+            id : 'option1',
+            target : '/search/',
+            value : ''
         }
     }
 
-
     // Function switch betwen register and login
+
+    handleInput(event){
+        let target = event.target.name;
+        this.state[target] = event.target.value;
+        this.setState({
+            target : '/search/' + event.target.value
+        })
+    }
+
     popout(event){
         let id = event.target.id;
         this.setState({
@@ -35,8 +45,8 @@ export default class Navbar extends React.Component{
                         </div>
                     </div>
                     <form className="form-inline my-2 my-lg-0">
-                        <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-                        <Link to= "/search"><button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button></Link>
+                        <input className="form-control mr-sm-2" type="search" placeholder="Search" name = 'search' aria-label="Search" onChange={this.handleInput.bind(this)}/>
+                        <Link to={this.state.target}><button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button></Link>
                     </form>
                         <button href="#" data-target="#SignIn" data-toggle="modal" className="btn btn-outline-success my-2 my-sm-0 ml-3">Your Account</button>
                 </nav>
@@ -61,7 +71,7 @@ export default class Navbar extends React.Component{
                                     this.state.id === 'option1' ? <Login/> : <Register/>
                                 }
                             </div>
-                        </div>
+                            </div>
                     </div>
                 </div>
             </div>
