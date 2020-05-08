@@ -17,7 +17,7 @@ export default class Courses extends React.Component{
                 <div className='row'>
                     {arr.map((element, index)=>{
                         return (
-                            <div className='col-md-4'>
+                            <div className='col-md-4' key={index}>
                                 <div className='card'>
                                     <img src={element.img} className='card-img-top' alt='cat'></img>
                                     <div className='card-body'>

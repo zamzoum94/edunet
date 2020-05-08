@@ -19,7 +19,7 @@ exports.createCourses = async (req, res, next) => {
             category,
             photo,
             teacherId
-        }= req.body;
+        }= req.body
 
         const course = await db.Course.create({
             title,

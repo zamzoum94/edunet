@@ -6,8 +6,11 @@ let arr = [], max = 10;
 for(let i = 0; i < max; i++){
     arr.push(obj);
 }
+
 export default class Teachers extends React.Component{
-    
+    constructor(props){
+        super(props);
+    }
 
     render(){
         return(
@@ -15,7 +18,7 @@ export default class Teachers extends React.Component{
                 <div className='row'>
                     {arr.map((element, index)=>{
                         return (
-                            <div className='col-md-4'>
+                            <div className='col-md-4' key={index}>
                                 <div className='card'>
                                     <img src={element.img} className='card-img-top' alt='cat'></img>
                                     <div className='card-body'>
@@ -25,7 +28,7 @@ export default class Teachers extends React.Component{
                                         <p className='card-text'>
                                             {element.desciption}
                                         </p>
-                                        <Link to="/teacher"><button type='submit' className='btn btn-primary'>Check profil</button></Link>
+                                        <Link to="/teacher/5"><button type='submit' className='btn btn-primary'>Check profil</button></Link>
                                     </div>
                                 </div>
                             </div>
