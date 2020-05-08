@@ -1,5 +1,6 @@
 
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 let obj = {name : 'book', desciption:'hello', img : 'https://i.ytimg.com/vi/SQJrYw1QvSQ/maxresdefault.jpg'};
 let arr = [], max = 10;
@@ -27,7 +28,7 @@ export default class Courses extends React.Component{
                                         <p className='card-text'>
                                             {element.desciption}
                                         </p>
-                                        <button type='submit' className='btn btn-primary'>Check course</button>
+                                        <Link to='/course/5'><button type='submit' className='btn btn-primary'>Check course</button></Link>
                                     </div>
                                 </div>
                             </div>
