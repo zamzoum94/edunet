@@ -9,6 +9,7 @@ export default class Login extends React.Component{
             role:null
         }
     }
+    
     // collect data from input
     handleInput(e){
         let target = e.target.name;

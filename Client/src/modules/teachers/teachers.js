@@ -12,6 +12,17 @@ export default class Teachers extends React.Component{
         super(props);
     }
 
+    fetchData(){
+        fetch(`http://localhost:8080/teachers`, {
+            method : 'GET'
+        })
+        .then(response =>{
+            return response.text()
+        }).then(data =>{
+            console.log(data);
+        })
+    }
+
     render(){
         return(
             <div>

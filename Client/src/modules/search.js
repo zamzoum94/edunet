@@ -4,8 +4,19 @@ import {Link , NavLink} from 'react-router-dom';
 export default class Search extends React.Component{
     constructor(props){
         super(props);
-        console.log(props.match.params.value);
     }
+
+    fetchData(){
+        fetch(`http://localhost:8080/search/`, {
+            method : 'GET'
+        })
+        .then(response =>{
+            return response.text()
+        }).then(data =>{
+            console.log(data);
+        })
+    }
+
     render(){
         return <div>Hi</div>
     }

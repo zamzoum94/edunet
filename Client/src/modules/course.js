@@ -21,13 +21,18 @@ let obj = {
 export default class Course extends React.Component{
     constructor(props){
         super(props);
-        console.log(props.match.params.id);
+        this.state.id = props.match.params.id;
     }
 
-    componentWillReceiveProps(props){
-        this.state = {
-            id : props.match.params.id
-        }
+    fetchData(){
+        fetch(`http://localhost:8080/courses/${this.state.id}`, {
+            method : 'GET'
+        })
+        .then(response =>{
+            return response.text()
+        }).then(data =>{
+            console.log(data);
+        })
     }
 
     render(){

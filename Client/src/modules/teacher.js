@@ -9,14 +9,19 @@ let courses = [{name : 'Mekla', id:0}, {name : 'Noum', id:1}]
 export default class Teacher extends React.Component{
     constructor(props){
         super(props);
-        
+        this.state.id = props.match.params.id;
     }
     
-    componentWillReceiveProps(props){
-        this.state = ({
-            name : props.match.params.name
+    fetchData(){
+        fetch(`http://localhost:8080/teachers/${this.state.id}`, {
+            method : 'GET'
         })
-    }    
+        .then(response =>{
+            return response.text()
+        }).then(data =>{
+            console.log(data);
+        })
+    }
 
     render(){
         return(

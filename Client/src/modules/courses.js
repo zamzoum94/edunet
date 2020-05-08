@@ -10,7 +10,20 @@ for(let i = 0; i < max; i++){
 
 
 export default class Courses extends React.Component{
-    
+    constructor(props){
+        super(props);
+    }  
+
+    fetchData(){
+        fetch(`http://localhost:8080/courses`, {
+            method : 'GET'
+        })
+        .then(response =>{
+            return response.text()
+        }).then(data =>{
+            console.log(data);
+        })
+    }
 
     render(){
         return(
