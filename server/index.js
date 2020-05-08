@@ -1,11 +1,11 @@
-require('dotenv').config()
+require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
-
 const routes = require('./routes');
+
 
 const app = express();
 
@@ -14,6 +14,8 @@ app.use(bodyParser.json());
 
 app.use('/auth', routes.auth);
 app.use('/courses', routes.courses);
+app.use('/category', routes.category);
+//app.use('/teachers', routes.teachers);
 
 
 const port = process.env.PORT || 8080;

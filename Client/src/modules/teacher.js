@@ -1,8 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-
-
 let courses = [{name : 'Mekla', id:0}, {name : 'Noum', id:1}]
 
 
@@ -14,9 +12,10 @@ export default class Teacher extends React.Component{
     
     componentWillReceiveProps(props){
         this.state = ({
-            name : props.match.params.name
+            id : props.match.params.id
         })
-    }    
+    }
+
 
     render(){
         return(
