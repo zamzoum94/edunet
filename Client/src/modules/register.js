@@ -1,5 +1,4 @@
 import React from 'react';
-
 export default class Register extends React.Component{
     constructor(props){
         super(props);
@@ -21,6 +20,12 @@ export default class Register extends React.Component{
     }
     handlSubmit(event){
         event.preventDefault();
+        fetch("http://localhost:8080/auth/singup",)
+            .then((res)=>{
+                this.setState({
+
+                })
+            })
     }
 
     render(){

@@ -9,22 +9,22 @@ exports.showCourses = async (req, res, next) =>{
         res.status(400);
         next(err)
     }
-}
+};
 
 exports.createCourses = async (req, res, next) => {
     try{
         const {
             title,
             description,
-            category,
+            categoryId,
             photo,
             teacherId
-        }= req.body
+        }= req.body;
 
         const course = await db.Course.create({
             title,
             description,
-            category,
+            categoryId,
             photo,
             teacherId
         });
@@ -35,12 +35,12 @@ exports.createCourses = async (req, res, next) => {
 
         next(err)
     }
-}
+};
 
 exports.getCourse = async (req, res, next) => {
     try{
         const {id} = req.params;
-        const course = await db.Course.findOne({where: {id : id}})
+        const course = await db.Course.findOne({where: {id : id}});
 
         if (!course){
             res.status(404).json(" No course with this id")
@@ -48,7 +48,8 @@ exports.getCourse = async (req, res, next) => {
         else{
 
             const teacher = await  db.Teacher.findOne({where: {id : course.teacherId}});
-            res.status(200).json({teacher , course})
+            const category = await db.Category.findOne({where: {id : course.categoryId}});
+            res.status(200).json({teacher , course, category})
         }
     }
     catch(err){
@@ -103,5 +104,29 @@ exports.enroll = async(req, res, next) =>{
     catch(err) {
         res.status(400);
         next(err)
+    }
+};
+exports.showCoursesByCategory = async (req, res, next) =>{
+    try{
+        const {name} = req.params;
+        const category = await db.Category.findOne({where : {name : name}});
+        const courses = await db.Course.findAll({where : {categoryId : category.id}});
+        res.status(200).json(courses)
+    }
+    catch(err){
+        res.status(400);
+        next(err)
+    }
+};
+
+exports.showCategories = async (req,res,next) =>{
+    try{
+        const categories = await db.Category.findAll({});
+        res.status(200).json(categories)
+
+    }
+    catch (e) {
+        res.status(400);
+        next(e)
     }
 };

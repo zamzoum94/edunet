@@ -15,8 +15,8 @@ exports.signUp = async(req, res, next) => {
                 linkedIn : req.body.linkedIn,
                 photo : req.body.photo || "https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png"
             });
-            const {id, email} = teacher
-            const token = jwt.sign({id, email}, process.env.SECRET)
+            const {id, email} = teacher;
+            const token = jwt.sign({id, email}, process.env.SECRET);
             res.status(201).json({id, email, token})
         }
 
@@ -28,8 +28,8 @@ exports.signUp = async(req, res, next) => {
                 password : hashedPassword,
                 photo : req.body.photo || "https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png"
             });
-            const {id, email} = student
-            const token = jwt.sign({id, email}, process.env.SECRET)
+            const {id, email} = student;
+            const token = jwt.sign({id, email}, process.env.SECRET);
             res.status(201).json({id, email, token})
         }
     }
@@ -55,8 +55,8 @@ exports.login = async(req, res, next) =>{
                     res.status(404).send('not valid password');
                 }
                 else{
-                    const {id, email} = user
-                    const token = jwt.sign({id, email}, process.env.SECRET)
+                    const {id, email} = user;
+                    const token = jwt.sign({id, email}, process.env.SECRET);
                     res.status(200).json({id, email, token})
                 }
             }
