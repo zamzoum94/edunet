@@ -13,7 +13,7 @@ export default class Search extends React.Component{
         .then(response =>{
             return response.text()
         }).then(data =>{
-            console.log(data);
+            console.log(json.parse(data));
         })
     }
 

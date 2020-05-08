@@ -19,7 +19,6 @@ export default class Login extends React.Component{
     // submit a form
     handleSubmit(e){
         e.preventDefault();
-        
     }
     
 
