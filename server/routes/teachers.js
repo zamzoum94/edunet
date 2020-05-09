@@ -1,4 +1,4 @@
-/*const router = require('express').Router();
+const router = require('express').Router();
 
 const handler = require('../handlers');
 
@@ -10,4 +10,4 @@ router
     .route('/:id')
     .get(handler.getTeacher)
 
-module.exports = router;*/
+module.exports = router;
