@@ -11,11 +11,14 @@ import SearchByCategory  from './modules/searchbycategory';
 
 import TeacherLog from './modules/profile/teacherlog'
 
+import StudentLog from './modules/profile/studentlog'
+
 import CreateCourse from './modules/profile/createcourse';
 
 export default class App  extends React.Component {
   constructor(props){
     super(props)
+
   }
   render(){
     return (
@@ -31,6 +34,7 @@ export default class App  extends React.Component {
           <Route path='/course/:id' component={Course}/>
           <Route path='/searchByCategory/:category' component={SearchByCategory}/>
           <Route path='/createcourse/:id' component={CreateCourse}/>
+          <Route path='/studentprofile/:id' component={StudentLog}/>
        </div>
     </BrowserRouter>
     );
