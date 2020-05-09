@@ -1,4 +1,6 @@
 module.exports = {
     ...require('./auth'),
-    ...require('./courses')
+    ...require('./courses'),
+    ...require('./students'),
+    ...require('./teachers')
 };

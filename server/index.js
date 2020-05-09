@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 app.use('/auth', routes.auth);
 app.use('/courses', routes.courses);
 app.use('/category', routes.category);
+app.use('/students', routes.students);
 //app.use('/teachers', routes.teachers);
 
 
