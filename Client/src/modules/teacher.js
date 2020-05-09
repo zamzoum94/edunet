@@ -33,10 +33,10 @@ export default class Teacher extends React.Component{
             <div className='row'>
                 <div className='col-md-4'>
                     <div className='card'>
-                        <img className='card-img-top' src={this.state.data !== null ? this.state.data.photo : ''}></img>
+                        <img className='card-img-top' src={this.state.data !== null ? this.state.data.teacher.photo : ''}></img>
                         <div className='card-body'>
-                            <h4 className='card-title'>{this.state.data !== null ? (this.state.data.first_name + ' ' +this.state.data.last_name)  : ''}</h4>
-                            <p className='card-text'>{this.state.data !== null ? this.state.data.email  : ''}</p>
+                            <h4 className='card-title'>{this.state.data !== null ? (this.state.data.teacher.first_name + ' ' +this.state.data.teacher.last_name)  : ''}</h4>
+                            <p className='card-text'>{this.state.data !== null ? this.state.data.teacher.email  : ''}</p>
                         </div>
                     </div>
                 </div>
@@ -44,11 +44,11 @@ export default class Teacher extends React.Component{
                     <div className='row'>
                         <div className='col-md-6'>
                             <h2>Teacher Courses</h2>
-                            {courses.map((element, index)=>{
+                            {this.state.data === null ? '' : this.state.data.course.map((element, index)=>{
                                 return(
                                     <div className='row' key ={index}>
                                         <div className='col-md'>
-                                            <Link to={'/course/'+element.id}><h4>{element.name}</h4></Link>
+                                            <Link to={'/course/'+element.id}><h4>{element.title}</h4></Link>
                                         </div>
                                     </div>
                                 )

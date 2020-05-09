@@ -18,7 +18,8 @@ exports.getTeacher = async (req, res, next) => {
         if(!teacher){
             res.status(404).json('no teacher with this id')
         }
-        res.status(200).json(teacher);
+        const course = await db.Course.findAll({where : {teacherId : id}})
+        res.status(200).json({teacher, course});
     }
     catch (e) {
         res.status(400)
