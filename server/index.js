@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use('/auth', routes.auth);
 app.use('/courses', routes.courses);
 app.use('/category', routes.category);
-//app.use('/teachers', routes.teachers);
+app.use('/teachers', routes.teachers);
 
 
 const port = process.env.PORT || 8080;

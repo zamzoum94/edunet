@@ -23,7 +23,7 @@ export default class App  extends React.Component {
           <Route exact path='/' component={Home}></Route>
           <Route path='/teachers' component={Teachers}></Route>
           <Route path='/courses' component={Courses}></Route>
-          <Route path='/teacher/:name' component={Teacher}></Route>
+          <Route path='/teacher/:id' component={Teacher}></Route>
           <Route path='/search/:value' component={Search}></Route>
           <Route path='/teacherprofile' component={TeacherLog}/>
           <Route path='/course/:id' component={Course}/>
