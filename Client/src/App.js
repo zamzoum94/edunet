@@ -18,13 +18,17 @@ import CreateCourse from './modules/profile/createcourse';
 export default class App  extends React.Component {
   constructor(props){
     super(props)
-
+    this.state = {
+      id : 1, 
+      auth : true,
+      role : 'teacher'
+    }
   }
   render(){
     return (
       <BrowserRouter>
         <div className='container'>
-          <Navbar/>
+          <Navbar user={this.state}/>
           <Route exact path='/' component={Home}></Route>
           <Route path='/teachers' component={Teachers}></Route>
           <Route path='/courses' component={Courses}></Route>

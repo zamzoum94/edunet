@@ -8,8 +8,10 @@ export default class Navbar extends React.Component{
         this.state = {
             id : 'option1',
             target : '/search/',
-            value : ''
+            value : '',
+            user : props.user
         }
+        console.log(props.user)
     }
 
     // Function switch betwen register and login
@@ -48,7 +50,13 @@ export default class Navbar extends React.Component{
                         <input className="form-control mr-sm-2" type="search" placeholder="Search" name = 'search' aria-label="Search" onChange={this.handleInput.bind(this)}/>
                         <Link to={this.state.target}><button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button></Link>
                     </form>
+                    {this.state.user.auth === false ? 
                         <button href="#" data-target="#SignIn" data-toggle="modal" className="btn btn-outline-success my-2 my-sm-0 ml-3">Your Account</button>
+                        :
+                        <Link to={this.state.user.role === 'teacher' ? `/teacherprofile/${this.state.user.id}` : `/studentprofile/${this.state.user.id}`}>
+                        <button className='btn btn-outline-success my-2 my-sm-0 ml-3'>Your account</button></Link>
+                    }
+                        
                 </nav>
                 
                 <div className="modal fade" id="SignIn">
