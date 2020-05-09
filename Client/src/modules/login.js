@@ -8,6 +8,7 @@ export default class Login extends React.Component{
             role:null
         }
     }
+    
     // collect data from input
     handleInput(e){
         let target = e.target.name;
@@ -17,8 +18,25 @@ export default class Login extends React.Component{
     // submit a form
     handleSubmit(e){
         e.preventDefault();
-        
+        let user = this.state
+        fetch('http://localhost:8080/auth/login', {
+            method : 'POST',
+            headers : {'Content-type' : 'application/json'},
+            body : JSON.stringify(user)
+        })
+        .then(doc=>{
+            return doc.json()
+        })
+        .then(data =>{
+            let id = data.id;
+            window.location.href = `http://localhost:3000/teacherprofile/${id}`
+        })
+        .catch(error=>{
+            console.log(error)
+        })
     }
+
+
     
 
     render(){

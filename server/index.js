@@ -11,12 +11,17 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended : true}))
 
 app.use('/auth', routes.auth);
 app.use('/courses', routes.courses);
 app.use('/category', routes.category);
+
 app.use('/students', routes.students);
 //app.use('/teachers', routes.teachers);
+
+app.use('/teachers', routes.teachers);
+
 
 
 const port = process.env.PORT || 8080;

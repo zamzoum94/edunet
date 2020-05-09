@@ -7,25 +7,36 @@ let courses = [{name : 'Mekla', id:0}, {name : 'Noum', id:1}]
 export default class Teacher extends React.Component{
     constructor(props){
         super(props);
-        
-    }
-    
-    componentWillReceiveProps(props){
-        this.state = ({
-            id : props.match.params.id
-        })
+        this.state= {
+            id : props.match.params.id,
+            data : null
+        }
+        this.fetchData();
+        console.log(props.match.params.id)
     }
 
+    fetchData(){
+        fetch(`http://localhost:8080/teachers/${this.state.id}`, {
+            method : 'GET'
+        })
+        .then(response =>{
+            return response.text()
+        }).then(data => {
+            this.setState({
+                data : JSON.parse(data)
+            })
+        })
+    }
 
     render(){
         return(
             <div className='row'>
                 <div className='col-md-4'>
                     <div className='card'>
-                        <img className='card-img-top' src='https://p7.hiclipart.com/preview/345/892/994/%E3%83%81%E3%83%A3%E3%83%BC%E3%83%88%E5%BC%8F-middle-school-juku-%E6%95%B0%E5%AD%A6-lecturer-teacher-man.jpg'></img>
+                        <img className='card-img-top' src={this.state.data !== null ? this.state.data.teacher.photo : ''}></img>
                         <div className='card-body'>
-                            <h4 className='card-title'>Teacher name</h4>
-                            <p className='card-text'>Teacher desciption</p>
+                            <h4 className='card-title'>{this.state.data !== null ? (this.state.data.teacher.first_name + ' ' +this.state.data.teacher.last_name)  : ''}</h4>
+                            <p className='card-text'>{this.state.data !== null ? this.state.data.teacher.email  : ''}</p>
                         </div>
                     </div>
                 </div>
@@ -33,11 +44,11 @@ export default class Teacher extends React.Component{
                     <div className='row'>
                         <div className='col-md-6'>
                             <h2>Teacher Courses</h2>
-                            {courses.map((element, index)=>{
+                            {this.state.data === null ? '' : this.state.data.course.map((element, index)=>{
                                 return(
                                     <div className='row' key ={index}>
                                         <div className='col-md'>
-                                            <Link to={'/course/'+element.id}><h4>{element.name}</h4></Link>
+                                            <Link to={'/course/'+element.id}><h4>{element.title}</h4></Link>
                                         </div>
                                     </div>
                                 )

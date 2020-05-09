@@ -1,6 +1,6 @@
 const db = require('sequelize');
 
-const sql = new db('edunet','root','root',{dialect: 'mysql'});
+const sql = new db('edunet','root', '' ,{dialect: 'mysql'});
 
 const student = sql.define('student',{
     first_name : db.STRING,
@@ -111,7 +111,9 @@ course.belongsTo(category);
 category.hasMany(course, {foreignKey: "categoryId"});
 
 student.sync();
+
 course.sync();
+
 video.sync();
 teacher.sync();
 category.sync()
@@ -121,8 +123,9 @@ category.sync()
             category.create({name: 'Language'});
             category.create({name: 'Language'})
         });
-course_student.sync();
 
+
+course_student.sync();
 
 module.exports.Student = student;
 module.exports.Course = course;

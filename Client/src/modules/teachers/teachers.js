@@ -10,25 +10,43 @@ for(let i = 0; i < max; i++){
 export default class Teachers extends React.Component{
     constructor(props){
         super(props);
+        this.state = {
+            data : null
+        }
+        this.fetchData();
+    }
+
+    fetchData(){
+        fetch(`http://localhost:8080/teachers`, {
+            method : 'GET'
+        })
+        .then(response =>{
+            return response.text()
+        }).then(data =>{
+            this.setState({
+                data : JSON.parse(data)
+            })
+            console.log(JSON.parse(data))
+        })
     }
 
     render(){
         return(
             <div>
                 <div className='row'>
-                    {arr.map((element, index)=>{
+                    {this.state.data === null ?  '' : this.state.data.map((element, index)=>{
                         return (
                             <div className='col-md-4' key={index}>
                                 <div className='card'>
-                                    <img src={element.img} className='card-img-top' alt='cat'></img>
+                                    <img src={element.photo} className='card-img-top' alt='cat'></img>
                                     <div className='card-body'>
                                         <h4 className='card-title'>
-                                            {element.name}
+                                            {element.first_name+' '+element.last_name}
                                         </h4>
                                         <p className='card-text'>
-                                            {element.desciption}
+                                            {element.email}
                                         </p>
-                                        <Link to="/teacher/5"><button type='submit' className='btn btn-primary'>Check profil</button></Link>
+                                        <Link to={`/teacher/${element.id}`}><button type='submit' className='btn btn-primary'>Check profil</button></Link>
                                     </div>
                                 </div>
                             </div>

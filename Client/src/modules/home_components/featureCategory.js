@@ -10,12 +10,15 @@ export default class FeatureCategory extends React.Component {
         return(
         <div className="featureCategory">
             <div className='row'>
-                    {categories.map((element, index) =>{
-                        return(
-                            <div className='col-md-2 categoryBorder'>
-                            <Link to={'searchByCategory/'+ element}><h2> {element}</h2></Link>
-                            </div>)
-                    })}
+                <div className='col-md-2 categoryBorder'>
+                    <Link to='searchbycategory/marketing'><h2> Marketing</h2></Link>
+                </div>
+                <div className='col-md-2 categoryBorder'>
+                    <Link  to='searchbycategory/language'><h2> Language</h2></Link>
+                </div>
+                <div className='col-md-2 categoryBorder'>
+                    <Link to='searchbycategory/it' ><h2> IT</h2></Link>
+                </div>
             </div>
         </div>
         );
