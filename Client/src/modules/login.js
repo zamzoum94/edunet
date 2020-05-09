@@ -29,7 +29,11 @@ export default class Login extends React.Component{
         })
         .then(data =>{
             let id = data.id;
-            window.location.href = `http://localhost:3000/teacherprofile/${id}`
+            if(data.role === 'teacher'){
+                window.location.href = `http://localhost:3000/teacherprofile/${id}`
+            } else{
+                window.location.href = `http://localhost:3000/studentprofile/${id}`
+            }
         })
         .catch(error=>{
             console.log(error)

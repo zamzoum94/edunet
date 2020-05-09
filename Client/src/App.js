@@ -11,17 +11,24 @@ import SearchByCategory  from './modules/searchbycategory';
 
 import TeacherLog from './modules/profile/teacherlog'
 
+import StudentLog from './modules/profile/studentlog'
+
 import CreateCourse from './modules/profile/createcourse';
 
 export default class App  extends React.Component {
   constructor(props){
     super(props)
+    this.state = {
+      id : 1, 
+      auth : true,
+      role : 'teacher'
+    }
   }
   render(){
     return (
       <BrowserRouter>
         <div className='container'>
-          <Navbar/>
+          <Navbar user={this.state}/>
           <Route exact path='/' component={Home}></Route>
           <Route path='/teachers' component={Teachers}></Route>
           <Route path='/courses' component={Courses}></Route>
@@ -31,6 +38,7 @@ export default class App  extends React.Component {
           <Route path='/course/:id' component={Course}/>
           <Route path='/searchByCategory/:category' component={SearchByCategory}/>
           <Route path='/createcourse/:id' component={CreateCourse}/>
+          <Route path='/studentprofile/:id' component={StudentLog}/>
        </div>
     </BrowserRouter>
     );

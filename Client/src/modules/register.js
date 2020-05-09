@@ -30,12 +30,17 @@ export default class Register extends React.Component{
             body : JSON.stringify(user)
         })
         .then(res=>{
-            console.log('done');
-            window.location.href = 'http://localhost:3000/teacherlog'
+            return res.json()
         })
-        .catch(err=>{
-            alert('user exist');
+        .then(data=>{
+            if(this.state.role === 'teacher'){
+                window.location.href = `http://localhost:3000/teacherprofile/${data.id}`
+            } else{
+                window.location.href = `http://localhost:3000/studentprofile/${data.id}`
+            }
         })
+        // There is some weird error
+         
     }
 
     render(){
