@@ -6,6 +6,7 @@ exports.signUp = async(req, res, next) => {
     try{
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
         if(req.body.role === 'teacher'){
+            //var university = await db.University.findOrCreate({name : req.body.university});
             var teacher = await db.Teacher.create({
                 first_name : req.body.first,
                 last_name : req.body.last,
@@ -13,9 +14,12 @@ exports.signUp = async(req, res, next) => {
                 password : hashedPassword,
                 github : req.body.github,
                 linkedIn : req.body.linkedIn,
-                photo : req.body.photo || "https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png"
+                photo : req.body.photo || "https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png",
+                post: req.body.post,
+               // universityId : university.id
             });
             const {id, email} = teacher;
+            //const universityName = university.name;
             const token = jwt.sign({id, email}, process.env.SECRET);
             res.status(201).json({id, email, token})
         }
@@ -44,22 +48,25 @@ exports.signUp = async(req, res, next) => {
 exports.login = async(req, res, next) =>{
     try{
         const role = (req.body.role === 'teacher')? 'Teacher' : 'Student';
-            const user = await db[role].findOne({where:{email : req.body.email}});
-            if(!user){
-                res.send('user not found');
-                console.log('user not found yehelkek zemzmi')
+        const user = await db[role].findOne({where:{email : req.body.email}});
+
+        if(!user){
+            res.send('user not found');
+            console.log('user not found yehelkek zemzmi')
+        }
+        else{
+            const valid = await bcrypt.compare(req.body.password, user.password);
+            if(!valid){
+                res.status(404).send('not valid password');
             }
             else{
-                const valid = await bcrypt.compare(req.body.password, user.password);
-                if(!valid){
-                    res.status(404).send('not valid password');
-                }
-                else{
-                    const {id, email} = user;
-                    const token = jwt.sign({id, email}, process.env.SECRET);
-                    res.status(200).json({id, email, token})
-                }
+                const {id, email} = user;
+              /*  const university = await db.University.findOne({where:{id : user.universityId }});
+                const universityName = university.name;*/
+                const token = jwt.sign({id, email}, process.env.SECRET);
+                res.status(200).json({id, email, token})
             }
+        }
 
     }
     catch(e){
