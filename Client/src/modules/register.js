@@ -4,11 +4,11 @@ export default class Register extends React.Component{
         super(props);
         this.state={
             role:null,
-            firstName :null,
-            lastName : null,
+            first :null,
+            last : null,
             email : null,
             password : null,
-            image : null
+            photo : null
         }
     }
     // collect values from inputs
@@ -16,16 +16,28 @@ export default class Register extends React.Component{
         let target = event.target.name;
         let value = event.target.value;
         this.state[target]=value;
-        
     }
+
     handlSubmit(event){
         event.preventDefault();
-        fetch("http://localhost:8080/auth/singup",)
-            .then((res)=>{
-                this.setState({
-
-                })
-            })
+        let user = this.state;
+        console.log(user)
+        fetch("http://localhost:8080/auth/signup",{
+            method : 'POST',
+            headers : {
+                'Content-Type' : 'application/json'
+            },
+            body : JSON.stringify(user)
+        })
+        .then(res=>{
+            return res.json()
+        })
+        .then(data=>{
+            console.log(data)
+        })
+        .catch(err=>{
+            alert('user exist');
+        })
     }
 
     render(){
@@ -35,12 +47,12 @@ export default class Register extends React.Component{
                   <div className='form-group'>
                       <div className='row'>
                           <div className='col-md'>
-                              <input className='form-control' type='text' placeholder='First name' name='firstName' onChange={this.handleInput.bind(this)}/>
+                              <input className='form-control' type='text' placeholder='First name' name='first' onChange={this.handleInput.bind(this)}/>
                           </div>
                       </div>
                       <div className='row'>
                           <div className='col-md'>
-                              <input className='form-control' type='text' placeholder='Last name' name='lastName'onChange={this.handleInput.bind(this)}/>
+                              <input className='form-control' type='text' placeholder='Last name' name='last'onChange={this.handleInput.bind(this)}/>
                           </div>
                       </div>
                       <div className='row'>
@@ -55,7 +67,7 @@ export default class Register extends React.Component{
                       </div>
                       <div className='row'>
                           <div className='col-md'>
-                              <input className='form-control' type='text' placeholder='Picture' name='image'onChange={this.handleInput.bind(this)}/>
+                              <input className='form-control' type='text' placeholder='Picture' name='photo'onChange={this.handleInput.bind(this)}/>
                           </div>
                       </div>
                       <div className='row'>
@@ -81,7 +93,7 @@ export default class Register extends React.Component{
                       </div>
                       <div className='row'>
                           <div className='col-md'>
-                            <button type="submit" className="btn btn-primary">SignUp</button>
+                            <button type="submit" className="btn btn-primary" onClick={this.handlSubmit.bind(this)}>SignUp</button>
                           </div>
                       </div>
                   </div>
