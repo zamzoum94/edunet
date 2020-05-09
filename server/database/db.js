@@ -120,6 +120,7 @@ category.sync()
     .then(function() {
             category.create({name: 'Marketing'});
             category.create({name: 'IT'});
+            category.create({name: 'Language'});
             category.create({name: 'Language'})
         });
 
