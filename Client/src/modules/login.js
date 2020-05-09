@@ -19,14 +19,17 @@ export default class Login extends React.Component{
     handleSubmit(e){
         e.preventDefault();
         let user = this.state
-        console.log(user);
         fetch('http://localhost:8080/auth/login', {
             method : 'POST',
             headers : {'Content-type' : 'application/json'},
             body : JSON.stringify(user)
         })
         .then(doc=>{
-            console.log('done')
+            return doc.json()
+        })
+        .then(data =>{
+            let id = data.id;
+            window.location.href = `http://localhost:3000/teacherprofile/${id}`
         })
         .catch(error=>{
             console.log(error)

@@ -4,6 +4,24 @@ import {Link} from 'react-router-dom';
 export default class TeacherLog extends React.Component{
     constructor(props){
         super(props);
+        this.state = {
+            id : props.match.params.id,
+            output : null
+        }
+        this.fetchData()
+    }
+
+    fetchData(){
+        fetch(`http://localhost:8080/teachers/${this.state.id}`, {
+            type : 'GET'
+        }).then(docs=>{
+            return docs.json()
+        })
+        .then(data=>{
+            this.setState({
+                output : data
+            })
+        })
     }
 
     render(){
@@ -20,10 +38,10 @@ export default class TeacherLog extends React.Component{
                 <div className='row'>
                     <div className='col-md-4'>
                         <div className='card'>
-                            <img className='card-img-top' src='https://p7.hiclipart.com/preview/345/892/994/%E3%83%81%E3%83%A3%E3%83%BC%E3%83%88%E5%BC%8F-middle-school-juku-%E6%95%B0%E5%AD%A6-lecturer-teacher-man.jpg'></img>
+                            <img className='card-img-top' src={this.state.output === null ? '' : this.state.output.teacher.photo}></img>
                             <div className='card-body'>
-                                <h4 className='card-title'>Teacher name</h4>
-                                <p className='card-text'>Teacher desciption</p>
+                                <h4 className='card-title'>{this.state.output === null ? '' : this.state.output.teacher.first_name +' ' +this.state.output.teacher.last_name}</h4>
+                                <p className='card-text'>{this.state.output === null ? '' : this.state.output.teacher.email}</p>
                             </div>
                         </div>
                     </div>

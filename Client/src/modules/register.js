@@ -30,10 +30,8 @@ export default class Register extends React.Component{
             body : JSON.stringify(user)
         })
         .then(res=>{
-            return res.json()
-        })
-        .then(data=>{
-            console.log(data)
+            console.log('done');
+            window.location.href = 'http://localhost:3000/teacherlog'
         })
         .catch(err=>{
             alert('user exist');

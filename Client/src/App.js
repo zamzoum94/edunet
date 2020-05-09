@@ -25,7 +25,7 @@ export default class App  extends React.Component {
           <Route path='/courses' component={Courses}></Route>
           <Route path='/teacher/:id' component={Teacher}></Route>
           <Route path='/search/:value' component={Search}></Route>
-          <Route path='/teacherprofile' component={TeacherLog}/>
+          <Route path='/teacherprofile/:id' component={TeacherLog}/>
           <Route path='/course/:id' component={Course}/>
           <Route path='/searchByCategory/:category' component={SearchByCategory}/>
        </div>
