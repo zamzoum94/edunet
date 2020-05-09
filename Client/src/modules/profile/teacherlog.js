@@ -18,6 +18,7 @@ export default class TeacherLog extends React.Component{
             return docs.json()
         })
         .then(data=>{
+            console.log(data)
             this.setState({
                 output : data
             })
@@ -32,7 +33,7 @@ export default class TeacherLog extends React.Component{
                         <input type='text' name='create_course' placeholder='create course' className='form-control'/>
                     </div>
                     <div className='col-md-3'>
-                        <Link to='/createcourse'><button className='btn btn-success btn-lg'>Create a course</button></Link>
+                        <Link to={'/createcourse/' + this.state.id}><button className='btn btn-success btn-lg'>Create a course</button></Link>
                     </div>
                 </div>
                 <div className='row'>
@@ -49,6 +50,15 @@ export default class TeacherLog extends React.Component{
                         <div className='row'>
                             <div className='col-md-6'>
                                 <h2>Teacher Courses</h2>
+                                {this.state.output === null ? '' : this.state.output.course.map((element, key)=>{
+                                    return(
+                                        <div className='row' key={key}>
+                                            <div className='col-md'>
+                                                <Link to={`/course/${element.id}`}><h2>{element.title}</h2></Link>
+                                            </div>
+                                        </div>
+                                    )
+                                })}
                             </div>
                             <div className='col-md-6'>
                                 <h2>Teacher courses rating</h2>

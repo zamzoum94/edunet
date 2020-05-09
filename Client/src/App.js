@@ -11,6 +11,8 @@ import SearchByCategory  from './modules/searchbycategory';
 
 import TeacherLog from './modules/profile/teacherlog'
 
+import CreateCourse from './modules/profile/createcourse';
+
 export default class App  extends React.Component {
   constructor(props){
     super(props)
@@ -28,6 +30,7 @@ export default class App  extends React.Component {
           <Route path='/teacherprofile/:id' component={TeacherLog}/>
           <Route path='/course/:id' component={Course}/>
           <Route path='/searchByCategory/:category' component={SearchByCategory}/>
+          <Route path='/createcourse/:id' component={CreateCourse}/>
        </div>
     </BrowserRouter>
     );
