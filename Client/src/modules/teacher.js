@@ -1,27 +1,17 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-
-
 let courses = [{name : 'Mekla', id:0}, {name : 'Noum', id:1}]
 
 
 export default class Teacher extends React.Component{
     constructor(props){
         super(props);
-        this.state.id = props.match.params.id;
+        this.state= {
+            id : props.match.params.id
+        }
     }
-    
-    fetchData(){
-        fetch(`http://localhost:8080/teachers/${this.state.id}`, {
-            method : 'GET'
-        })
-        .then(response =>{
-            return response.text()
-        }).then(data =>{
-            console.log(data);
-        })
-    }
+
 
     render(){
         return(

@@ -12,6 +12,10 @@ for(let i = 0; i < max; i++){
 export default class Courses extends React.Component{
     constructor(props){
         super(props);
+        this.state ={
+            output : null
+        }
+        this.fetchData();
     }  
 
     fetchData(){
@@ -22,32 +26,37 @@ export default class Courses extends React.Component{
             return response.text()
         }).then(data =>{
             console.log(data);
+            this.setState({
+                output : this.constructDiv(JSON.parse(data))
+            })
         })
     }
-
-    render(){
-        return(
-            <div>
+        constructDiv(data){
+            return(
                 <div className='row'>
-                    {arr.map((element, index)=>{
-                        return (
-                            <div className='col-md-4' key={index}>
+                    {
+                    data.map((element, key)=>{
+                        return(
+                            <div className='col-md-4' key={key}>
                                 <div className='card'>
-                                    <img src={element.img} className='card-img-top' alt='cat'></img>
+                                    <img src={element.photo} className='card-img-top' alt='pic'></img>
                                     <div className='card-body'>
-                                        <h4 className='card-title'>
-                                            {element.name}
-                                        </h4>
-                                        <p className='card-text'>
-                                            {element.desciption}
-                                        </p>
-                                        <Link to={'/course/'+obj.id}><button type='submit' className='btn btn-primary'>Check course</button></Link>
+                                        <h3 className='card-title'>{element.title}</h3>
+                                        <p className='card-text'>{element.description}</p>
                                     </div>
+                                    <Link to={'/course/'+element.id}><button className='btn btn-success'>Check Course</button></Link>
                                 </div>
                             </div>
                         )
-                    })}
+                        })
+                    }
                 </div>
+            )
+        }
+    render(){
+        return(
+            <div>
+                {this.state.output}
             </div>
         )
     }

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 let obj = {
     description : {
@@ -21,7 +22,11 @@ let obj = {
 export default class Course extends React.Component{
     constructor(props){
         super(props);
-        this.state.id = props.match.params.id;
+        this.state = {
+            id : props.match.params.id,
+            data : null
+        }
+        this.fetchData();
     }
 
     fetchData(){
@@ -31,7 +36,11 @@ export default class Course extends React.Component{
         .then(response =>{
             return response.text()
         }).then(data =>{
-            console.log(data);
+            console.log(JSON.parse(data));
+            this.setState({
+                data : JSON.parse(data)
+            })
+            
         })
     }
 
@@ -55,17 +64,21 @@ export default class Course extends React.Component{
                         <div className="card">
                             <img src={obj.description.img} className="card-img-top" alt="..."></img>
                             <div className="card-body">
-                                <h5 className="card-title">{obj.description.title}</h5>
-                                <p className="card-text">{obj.description.description}</p>
+                                <h5 className="card-title">{this.state.data !== null ? this.state.data.course.title: ''}</h5>
+                                <p className="card-text">{this.state.data !== null ? this.state.data.course.description: ''}</p>
                             </div>
                         </div>
                     </div>
                     <div className="tab-pane container fade" id="teacher">
                         <div className="card">
-                            <img src={obj.Teacher.image} className="card-img-top rounded-circle" alt="..."></img>
+                            <img src={this.state.data !== null ? this.state.data.teacher.photo : ''} className="card-img-top rounded-circle" alt="..."></img>
                             <div className="card-body">
-                                <h5 className="card-title">{obj.Teacher.name}</h5>
-                                <p className="card-text">{obj.description.email}</p>
+                                <Link to={`/teacher/${this.state.data !== null ? this.state.data.teacher.id : 0}`}>
+                                    <h5 className="card-title">
+                                        {this.state.data !== null ? (this.state.data.teacher.first_name + ' '+ this.state.data.teacher.last_name) : ''}
+                                    </h5>
+                                </Link>
+                                <p className="card-text">{this.state.data !== null ? this.state.data.teacher.email : ''}</p>
                             </div>
                         </div>
                     </div>

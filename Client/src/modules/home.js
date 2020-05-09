@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Form from './home_components/featureForm';
+
 import FeatureCategory from './home_components/featureCategory';
 import FeatureCourses from './home_components/featureCourses';
 import FeatureTeachers from './home_components/featureTeachers';
