@@ -20,8 +20,8 @@ export default class App  extends React.Component {
     super(props)
     this.state = {
       id : 1, 
-      auth : true,
-      role : 'teacher'
+      auth : false,
+      role : ''
     }
   }
   render(){

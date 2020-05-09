@@ -25,7 +25,7 @@ export default class Course extends React.Component{
         this.state = {
             id : props.match.params.id,
             data : null
-        }
+        };
         this.fetchData();
     }
 

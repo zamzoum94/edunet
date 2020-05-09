@@ -1,6 +1,6 @@
 const db = require('sequelize');
 
-const sql = new db('edunet','root', '' ,{dialect: 'mysql'});
+const sql = new db('edunet','root', 'root' ,{dialect: 'mysql'});
 
 const student = sql.define('student',{
     first_name : db.STRING,
@@ -26,6 +26,14 @@ const student = sql.define('student',{
         defaultValue: db.NOW
       }
 });
+
+
+/*const university = sql.define('University', {
+    name : {
+        type: db.STRING,
+        unique : true
+    }
+});*/
 
 const teacher = sql.define('teacher',{
     first_name : db.STRING,
@@ -53,6 +61,7 @@ const teacher = sql.define('teacher',{
         defaultValue: db.NOW
       }
 });
+
 
 const course = sql.define('course',{
     title : db.STRING,
@@ -95,7 +104,6 @@ const category = sql.define('category',{
 });
 
 
-
 const course_student = sql.define('course_student',{});
 
 student.belongsToMany(course, {through: course_student});
@@ -107,13 +115,16 @@ teacher.hasMany(course, {foreignKey: "teacherId"});
 video.belongsTo(course);
 course.hasMany(video);
 
+/*teacher.belongsTo(university);
+university.hasMany(teacher);*/
+
 course.belongsTo(category);
 category.hasMany(course, {foreignKey: "categoryId"});
 
+
+/*university.sync();*/
 student.sync();
-
 course.sync();
-
 video.sync();
 teacher.sync();
 category.sync()
@@ -121,12 +132,10 @@ category.sync()
             category.create({name: 'Marketing'});
             category.create({name: 'IT'});
             category.create({name: 'Language'});
-            category.create({name: 'Language'})
         });
-
-
 course_student.sync();
 
+/*module.exports.University = university;*/
 module.exports.Student = student;
 module.exports.Course = course;
 module.exports.Video = video;

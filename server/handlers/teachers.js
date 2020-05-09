@@ -2,11 +2,11 @@
 const db = require('../database/db');
 exports.showTeachers = async (req, res, next) => {
         try{
-            const teachers = await db.Teacher.findAll({});
+            const teachers = await db.Teacher.findAll( {});
             res.status(200).json(teachers)
         }
         catch (e) {
-            res.status(400)
+            res.status(400);
             next(e)
         }
     };
@@ -18,11 +18,11 @@ exports.getTeacher = async (req, res, next) => {
         if(!teacher){
             res.status(404).json('no teacher with this id')
         }
-        const course = await db.Course.findAll({where : {teacherId : id}})
+        const course = await db.Course.findAll({where : {teacherId : id}});
         res.status(200).json({teacher, course});
     }
     catch (e) {
-        res.status(400)
+        res.status(400);
         next(e)
     }
 }

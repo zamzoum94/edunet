@@ -18,7 +18,7 @@ export default class TeacherLog extends React.Component{
             return docs.json()
         })
         .then(data=>{
-            console.log(data)
+            console.log(data);
             this.setState({
                 output : data
             })

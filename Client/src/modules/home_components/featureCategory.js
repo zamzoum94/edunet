@@ -1,24 +1,43 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-let categories = ['Marketing', 'IT', 'Language']
 export default class FeatureCategory extends React.Component {
     constructor(props){
         super(props);
+        this.state={
+            categories : []
+        };
+        this.fetchCategories();
+    }
+
+    fetchCategories(){
+        fetch('http://localhost:8080/category', {
+            method : 'GET'
+        })
+            .then(res =>{
+                return res.text()
+            })
+            .then(data =>{
+            this.setState({
+                categories : JSON.parse(data).map((element, idx) =>{
+                    return element.name;
+                })
+            })
+
+        })
     }
 
     render(){
         return(
         <div className="featureCategory">
             <div className='row'>
-                <div className='col-md-2 categoryBorder'>
-                    <Link to='searchbycategory/marketing'><h2> Marketing</h2></Link>
-                </div>
-                <div className='col-md-2 categoryBorder'>
-                    <Link  to='searchbycategory/language'><h2> Language</h2></Link>
-                </div>
-                <div className='col-md-2 categoryBorder'>
-                    <Link to='searchbycategory/it' ><h2> IT</h2></Link>
-                </div>
+                {this.state.categories.map((element,idx) =>{
+                    return(
+                        <div className='col-md-2 categoryBorder'>
+                            <Link to='searchbycategory/marketing'><h2>{element}</h2></Link>
+                        </div>
+                    )
+                })
+                }
             </div>
         </div>
         );

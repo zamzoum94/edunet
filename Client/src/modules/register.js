@@ -8,20 +8,28 @@ export default class Register extends React.Component{
             last : null,
             email : null,
             password : null,
-            photo : null
+            photo : null,
+            post : null,
+            university: null,
+            display : 'none'
         }
     }
     // collect values from inputs
-    handleInput(event){
+    handleInput(event) {
         let target = event.target.name;
         let value = event.target.value;
-        this.state[target]=value;
-    }
+        this.state[target] = value;
+
+        if (target === 'role') {
+            (value === "student") ? this.setState({display : "none"}) : this.setState({display :"block" });
+        }
+    };
+
 
     handlSubmit(event){
         event.preventDefault();
         let user = this.state;
-        console.log(user)
+        console.log(user);
         fetch("http://localhost:8080/auth/signup",{
             method : 'POST',
             headers : {
@@ -88,12 +96,26 @@ export default class Register extends React.Component{
                               </div>
                               <div className='col-md'>
                                   <div className='form-check'>
-                                      <input className='form-check-input' type='radio' name='role' value='student'onChange={this.handleInput.bind(this)}/>
+                                      <input className='form-check-input' type='radio' name='role' value='student' onChange={this.handleInput.bind(this)}/>
                                       <label className = 'form-check-label' htmlFor='role'>Student</label>
                                   </div>
                               </div>
                           </div>
                       </div>
+
+
+                      <div className='row'>
+                          <div className='col-md'>
+                              <input style= {{display : this.state.display}} className='form-control' type='text' placeholder='Post' name='post' onChange={this.handleInput.bind(this)}/>
+                          </div>
+                      </div>
+                      <div className='row'>
+                          <div className='col-md'>
+                              <input style= {{display : this.state.display}} className='form-control' type='text' placeholder='University' name='university' onChange={this.handleInput.bind(this)}/>
+                          </div>
+                      </div>
+
+
                       <div className='row'>
                           <div className='col-md'>
                             <button type="submit" className="btn btn-primary" onClick={this.handlSubmit.bind(this)}>SignUp</button>
