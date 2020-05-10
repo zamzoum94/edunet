@@ -9,6 +9,7 @@ export default class Search extends React.Component{
             data : null
         }
         this.fetchData()
+
     }
 
     fetchData(){
@@ -18,6 +19,7 @@ export default class Search extends React.Component{
         .then(response =>{
             return response.text()
         }).then(data =>{
+            console.log(JSON.parse(data))
             this.setState({
                 data : JSON.parse(data)
             })
@@ -26,18 +28,19 @@ export default class Search extends React.Component{
 
 
     render(){
-        return <div className='row'>
+        return( 
+        <div className='row'>
             {
             this.state.data === null ? '' : (this.state.data)
-            .filter(element => element.title.toLowerCase().indexOf(this.state.target.toLowerCase()) !== -1)
-            .map((element, index)=>{
+            .filter(element =>  element.title  === this.state.target)
+            .map((element2, index)=>{
                 return(
                     <div className='col-md-4'>
                         <div className='card'>
                             <div className='card-body'>
-                                <h4 className='card-title'>{element.title}</h4>
-                                <p className='card-text'>{element.description}</p>
-                                <Link to={`/course/${element.id}`}>
+                                <h4 className='card-title'>{element2.title}</h4>
+                                <p className='card-text'>{element2.description}</p>
+                                <Link to={`/course/${element2.id}`}>
                                     <h4>Check Course</h4>
                                 </Link>
                             </div>
@@ -45,6 +48,6 @@ export default class Search extends React.Component{
                     </div>
                 )
             })}
-        </div>
+        </div>)
     }
 }

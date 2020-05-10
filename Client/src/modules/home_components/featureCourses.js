@@ -33,10 +33,10 @@ export default class FeatureCourses extends React.Component {
         return(
             <div className='featureCourses'>
                 <div className="row">
-                    {this.state.courses.map((element, idx)=>{
+                    {this.state.courses.slice(0,3).map((element, idx)=>{
                         return(
-                            <div className="col-md-3">
-                                <Link to={`/course/' + ${element.id}`}>
+                            <div className="col-md-3 ml-5">
+                                <Link to={`/course/${element.id}`}>
                                     <div className="card">
                                         <img className ="card-img-top" src="https://smartmobilestudio.com/wp-content/uploads/2012/06/leather-book-preview.png"></img>
                                         <div className="card-body">

@@ -1,6 +1,7 @@
 import React from 'react';
 export default class Login extends React.Component{
     constructor(props){
+        console.log('hiiiiiiiiiii', props.user);
         super(props);
         this.state={
             email: null,
@@ -29,7 +30,11 @@ export default class Login extends React.Component{
         })
         .then(data =>{
             let id = data.id;
-            if(data.role === 'teacher'){
+            this.props.user(id, data.token , this.state.role);
+            localStorage.setItem('id', id);
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('role', this.state.role);
+            if(this.state.role === 'teacher'){
                 window.location.href = `http://localhost:3000/teacherprofile/${id}`
             } else{
                 window.location.href = `http://localhost:3000/studentprofile/${id}`

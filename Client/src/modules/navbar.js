@@ -6,12 +6,19 @@ export default class Navbar extends React.Component{
     constructor(props){
         super(props);
         this.state = {
+            login : props.login,
             id : 'option1',
             target : '/search/',
             value : '',
             user : props.user
         }
-        console.log(props.user)
+        console.log('prrrrrrrrrrrrrooooooooops',props)
+    }
+
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            user : nextProps.user
+        })
     }
 
     // Function switch betwen register and login
@@ -52,9 +59,12 @@ export default class Navbar extends React.Component{
                     </form>
                     {this.state.user.auth === false ? 
                         <button href="#" data-target="#SignIn" data-toggle="modal" className="btn btn-outline-success my-2 my-sm-0 ml-3">Your Account</button>
-                        :
+                        :<div>
                         <Link to={this.state.user.role === 'teacher' ? `/teacherprofile/${this.state.user.id}` : `/studentprofile/${this.state.user.id}`}>
-                        <button className='btn btn-outline-success my-2 my-sm-0 ml-3'>Your account</button></Link>
+                            <button className='btn btn-outline-success my-2 my-sm-0 ml-3'>Profile</button>
+                        </Link>
+                            <button className='btn btn-outline-success my-2 my-sm-0 ml-3' onClick={this.props.logout.bind(this)}>Logout</button>
+                        </div>
                     }
                         
                 </nav>
@@ -76,7 +86,7 @@ export default class Navbar extends React.Component{
                                     </label>
                                 </div>
                                 {
-                                    this.state.id === 'option1' ? <Login/> : <Register/>
+                                    this.state.id === 'option1' ? <Login user={this.props.login.bind(this)}/> : <Register/>
                                 }
                             </div>
                             </div>
