@@ -19,9 +19,8 @@ app.use('/category', routes.category);
 
 app.use('/students', routes.students);
 
-//app.use('/teachers', routes.teachers);
-
 app.use('/teachers', routes.teachers);
+app.use('/video', routes.videos)
 
 
 

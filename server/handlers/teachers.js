@@ -25,4 +25,26 @@ exports.getTeacher = async (req, res, next) => {
         res.status(400);
         next(e)
     }
-}
+};
+
+exports.postVideo = async (req, res, next) => {
+    try{
+        const {id} = req.params;
+        const{
+            title,
+            description,
+            url,
+        } = req.body;
+
+        const videos = db.Video.create({
+            title,
+            description : description || 'no description',
+            url,
+            courseId : id
+        })
+        res.status(201).json({videos});
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
