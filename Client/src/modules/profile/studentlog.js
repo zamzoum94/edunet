@@ -22,11 +22,13 @@ export default class StudentProfile extends React.Component{
             return docs.text()
         })
         .then(data=>{
+            console.log(data)
             this.setState({
                 output : JSON.parse(data)
             })
         }).catch(err=>{
-            window.location.href = 'http://localhost:3000'
+            console.log(err)
+           // window.location.href = 'http://localhost:3000'
         })
     }
 

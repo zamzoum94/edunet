@@ -17,7 +17,7 @@ let obj = {
         'https://www.youtube.com/embed/3q0lhRD5PRY',
         'https://www.youtube.com/embed/UrMUwShNqhU'
     ]
-}
+};
 
 export default class Course extends React.Component{
     constructor(props){
