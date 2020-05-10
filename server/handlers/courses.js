@@ -25,7 +25,7 @@ exports.createCourses = async (req, res, next) => {
             title,
             description,
             categoryId,
-            photo,
+            photo : photo || "https://smartmobilestudio.com/wp-content/uploads/2012/06/leather-book-preview.png",
             teacherId
         });
         res.status(201).json(course)
@@ -93,7 +93,7 @@ exports.showCourseVideos = async (req,res,next)=>{
 exports.enroll = async(req, res, next) =>{
     try{
         const {id} = req.params;
-        const userId = 1;
+        const userId = 2;
         const subscribe = await db.Course_Student.create({
             studentId: userId,
             courseId : id

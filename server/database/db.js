@@ -142,3 +142,4 @@ module.exports.Video = video;
 module.exports.Teacher = teacher;
 module.exports.Category = category;
 module.exports.Course_Student = course_student;
+module.exports.sql = sql;
