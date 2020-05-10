@@ -16,12 +16,13 @@ export default class Teacher extends React.Component{
     }
 
     fetchData(){
-        fetch(`http://localhost:8080/teachers/${this.state.id}`, {
+        fetch(`http://localhost:8080/teachers/public/${this.state.id}`, {
             method : 'GET'
         })
         .then(response =>{
             return response.text()
         }).then(data => {
+            console.log(data)
             this.setState({
                 data : JSON.parse(data)
             })

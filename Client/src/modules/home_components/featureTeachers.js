@@ -19,8 +19,9 @@ export default class FeatureTeachers extends React.Component {
                 return res.text()
             })
             .then(data =>{
+
             this.setState({
-                teachers : JSON.parse(data).map((element, idx)=>{
+                teachers : JSON.parse(data).slice(0,3).map((element, idx)=>{
                     const {id, first_name, last_name, photo, linkedIn} = element;
                     return {id, first_name, last_name, photo, linkedIn}
                 })
@@ -34,14 +35,14 @@ export default class FeatureTeachers extends React.Component {
                 <div className='row'>
                     {this.state.teachers.map((element, idx)=>{
                         return(
-                            <div className='col-md-3 offset-md-1'>
+                            <div className='col-md-3 ml-5'>
                                 <div className='card'>
                                     <img src={element.photo || 'https://www.travelcontinuously.com/wp-content/uploads/2018/04/empty-avatar.png'} className='card-img-top'></img>
                                     <div className='card-body'>
                                         <div className='card-text'>
                                             {element.post + ', '+element.university}
                                         </div>
-                                        <Link to={'/teacher/Johnsnow'}><a href="" className="card-link">{element.first_name + ' '+ element.last_name}</a></Link>
+                                        <Link to={`/teacher/${element.id}`}><a href="" className="card-link">{element.first_name + ' '+ element.last_name}</a></Link>
                                     </div>
                                 </div>
                             </div>

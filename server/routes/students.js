@@ -2,9 +2,11 @@ const router = require('express').Router();
 
 const handler = require('../handlers');
 
+const app = require('../middlewares/auth')
+
 router
     .route('/:id')
-    .get(handler.getCoursesEnrolled);
+    .get(app, handler.getCoursesEnrolled);
 
 
 module.exports= router;

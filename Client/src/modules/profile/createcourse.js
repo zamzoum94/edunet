@@ -18,6 +18,7 @@ export default class CreateCourse extends React.Component{
     handlSubmit(event){
         event.preventDefault();
         let course = this.state.course
+        course.teacherId = this.state.teacherId;
         fetch("http://localhost:8080/courses",{
             method : 'POST',
             headers : {
@@ -68,7 +69,7 @@ export default class CreateCourse extends React.Component{
                       </div>
                       <div className='row'>
                           <div className='col-md-4'>
-                            <button type="submit" className="btn btn-primary" onClick={this.handlSubmit.bind(this)}>SignUp</button>
+                            <button type="submit" className="btn btn-primary" onClick={this.handlSubmit.bind(this)}>Create course</button>
                           </div>
                       </div>
                   </div>

@@ -15,15 +15,19 @@ export default class SudentProfile extends React.Component{
     fetchData(){
         console.log(this.state.id)
         fetch(`http://localhost:8080/students/${this.state.id}`, {
-            type : 'GET'
+            type : 'GET',
+            headers :{
+                'Authorization' : `Bearer ${localStorage.getItem('token')}`
+            }
         }).then(docs=>{
             return docs.json()
         })
         .then(data=>{
-            console.log(data)
             this.setState({
                 output : data
             })
+        }).catch(err=>{
+            window.location.href = 'http://localhost:3000'
         })
     }
 
@@ -53,9 +57,6 @@ export default class SudentProfile extends React.Component{
                                         </div>
                                     )
                                 })}
-                            </div>
-                            <div className='col-md-6'>
-                                <h2>Student courses rating</h2>
                             </div>
                         </div>
                     </div>

@@ -11,17 +11,22 @@ export default class TeacherLog extends React.Component{
         this.fetchData()
     }
 
+
     fetchData(){
         fetch(`http://localhost:8080/teachers/${this.state.id}`, {
-            type : 'GET'
+            type : 'GET',
+            headers :{
+                'Authorization' : `Bearer ${localStorage.getItem('token')}`
+            }
         }).then(docs=>{
             return docs.json()
         })
         .then(data=>{
-            console.log(data);
             this.setState({
                 output : data
             })
+        }).catch(err=>{
+            window.location.href = 'http://localhost:3000'
         })
     }
 
@@ -29,9 +34,6 @@ export default class TeacherLog extends React.Component{
         return(
             <div>
                 <div className='row mb-5'>
-                    <div className='col-md-4'>
-                        <input type='text' name='create_course' placeholder='create course' className='form-control'/>
-                    </div>
                     <div className='col-md-3'>
                         <Link to={'/createcourse/' + this.state.id}><button className='btn btn-success btn-lg'>Create a course</button></Link>
                     </div>
@@ -59,9 +61,6 @@ export default class TeacherLog extends React.Component{
                                         </div>
                                     )
                                 })}
-                            </div>
-                            <div className='col-md-6'>
-                                <h2>Teacher courses rating</h2>
                             </div>
                         </div>
                     </div>

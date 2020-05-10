@@ -44,54 +44,82 @@ export default class Course extends React.Component{
         })
     }
 
+    enroll(){
+        fetch(`http://localhost:8080/courses/${this.state.id}`,{
+            method : 'POST',
+            headers : {
+                'Authorization' : `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type' : 'application/json'
+            }
+        })
+        .then(response=>{
+            return response.json()
+        })
+        .then(docs=>{
+            console.log(JSON.parse(docs))
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+    }
+
     render(){
         return(
             <div>
-                <ul className="nav nav-tabs mb-5">
-                    <li className="nav-item">
-                        <a className="nav-link active" data-toggle="tab" href="#description">Description</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" data-toggle="tab" href="#teacher">Teacher</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" data-toggle="tab" href="#content">Content</a>
-                    </li>
-                    </ul>
-                    
-                    <div className="tab-content">
-                    <div className="tab-pane container active" id="description">
-                        <div className="card">
-                            <img src={obj.description.img} className="card-img-top" alt="..."></img>
-                            <div className="card-body">
-                                <h5 className="card-title">{this.state.data !== null ? this.state.data.course.title: ''}</h5>
-                                <p className="card-text">{this.state.data !== null ? this.state.data.course.description: ''}</p>
+                {localStorage.getItem('token') === null ? '' : 
+                <div className='row'>
+                    <div className='col-md-2'>
+                        <button className='btn btn-success' onClick={this.enroll.bind(this)}>Enroll</button>
+                    </div>
+                </div>
+                }
+                <div>
+                    <ul className="nav nav-tabs mb-5">
+                        <li className="nav-item">
+                            <a className="nav-link active" data-toggle="tab" href="#description">Description</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" data-toggle="tab" href="#teacher">Teacher</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" data-toggle="tab" href="#content">Content</a>
+                        </li>
+                        </ul>
+                        
+                        <div className="tab-content">
+                        <div className="tab-pane container active" id="description">
+                            <div className="card">
+                                <img src={obj.description.img} className="card-img-top" alt="..."></img>
+                                <div className="card-body">
+                                    <h5 className="card-title">{this.state.data !== null ? this.state.data.course.title: ''}</h5>
+                                    <p className="card-text">{this.state.data !== null ? this.state.data.course.description: ''}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="tab-pane container fade" id="teacher">
-                        <div className="card">
-                            <img src={this.state.data !== null ? this.state.data.teacher.photo : ''} className="card-img-top rounded-circle" alt="..."></img>
-                            <div className="card-body">
-                                <Link to={`/teacher/${this.state.data !== null ? this.state.data.teacher.id : 0}`}>
-                                    <h5 className="card-title">
-                                        {this.state.data !== null ? (this.state.data.teacher.first_name + ' '+ this.state.data.teacher.last_name) : ''}
-                                    </h5>
-                                </Link>
-                                <p className="card-text">{this.state.data !== null ? this.state.data.teacher.email : ''}</p>
+                        <div className="tab-pane container fade" id="teacher">
+                            <div className="card">
+                                <img src={this.state.data !== null ? this.state.data.teacher.photo : ''} className="card-img-top rounded-circle" alt="..."></img>
+                                <div className="card-body">
+                                    <Link to={`/teacher/${this.state.data !== null ? this.state.data.teacher.id : 0}`}>
+                                        <h5 className="card-title">
+                                            {this.state.data !== null ? (this.state.data.teacher.first_name + ' '+ this.state.data.teacher.last_name) : ''}
+                                        </h5>
+                                    </Link>
+                                    <p className="card-text">{this.state.data !== null ? this.state.data.teacher.email : ''}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="tab-pane container fade" id="content">
-                        <div className='row'>
-                            {obj.Content.map((element, key)=>{
-                                return(
-                                    <div className='col-md-12 mb-3' key={key}>
-                                        <iframe width="420" height="345" src={element}>
-                                        </iframe>
-                                    </div>
-                                )
-                            })}
+                        <div className="tab-pane container fade" id="content">
+                            <div className='row'>
+                                {obj.Content.map((element, key)=>{
+                                    return(
+                                        <div className='col-md-12 mb-3' key={key}>
+                                            <iframe width="420" height="345" src={element}>
+                                            </iframe>
+                                        </div>
+                                    )
+                                })}
+                            </div>
                         </div>
                     </div>
                 </div>

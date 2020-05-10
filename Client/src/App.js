@@ -19,16 +19,42 @@ export default class App  extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      id : 1, 
-      auth : false,
-      role : ''
+      id : localStorage.getItem('id'), 
+      role : localStorage.getItem('role'),
+      token: localStorage.getItem('token'),
+      auth : (localStorage.getItem('id') === null ? false:true)
     }
   }
+
+  loggedIn(id, token, role){
+    if(this.id !== null){
+      this.setState({
+        id : id,
+        token : token,
+        role : role,
+        auth : true
+      })
+    } 
+  }
+
+  logout(){
+      localStorage.removeItem('id');
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
+      this.setState({
+        id : null,
+        token : null,
+        role : null,
+        auth : false
+      })
+      window.location.href = 'http://localhost:3000'
+  }
+
   render(){
     return (
       <BrowserRouter>
         <div className='container'>
-          <Navbar user={this.state}/>
+          <Navbar user={this.state} logout={this.logout.bind(this)} login={this.loggedIn.bind(this)}/>
           <Route exact path='/' component={Home}></Route>
           <Route path='/teachers' component={Teachers}></Route>
           <Route path='/courses' component={Courses}></Route>
