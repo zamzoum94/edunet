@@ -31,15 +31,14 @@ export default class Course extends React.Component{
 
     fetchData(){
         fetch(`http://localhost:8080/courses/${this.state.id}`, {
-            method : 'GET'
+            method : 'GET',
         })
         .then(response =>{
             return response.text()
         }).then(data =>{
             this.setState({
                 data : JSON.parse(data)
-            })
-            
+            })    
         })
     }
 
@@ -65,7 +64,8 @@ export default class Course extends React.Component{
     render(){
         return(
             <div>
-                {localStorage.getItem('token') === null ? '' : 
+                {localStorage.getItem('token') === null ? '' :
+
                 <div className='row'>
                     <div className='col-md-2'>
                         <button className='btn btn-success' onClick={this.enroll.bind(this)}>Enroll</button>

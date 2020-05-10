@@ -25,8 +25,7 @@ exports.createCourses = async (req, res, next) => {
             title,
             description,
             categoryId,
-            photo : photo || "https://smartmobilestudio.com/wp-content/uploads/2012/06/leather-book-preview.png"
-            ,
+            photo : photo || "https://smartmobilestudio.com/wp-content/uploads/2012/06/leather-book-preview.png",
             teacherId
         });
         res.status(201).json(course)
@@ -40,6 +39,7 @@ exports.createCourses = async (req, res, next) => {
 
 exports.getCourse = async (req, res, next) => {
     try{
+        
         const {id} = req.params;
         const course = await db.Course.findOne({where: {id : id}});
 
@@ -94,12 +94,12 @@ exports.showCourseVideos = async (req,res,next)=>{
 exports.enroll = async(req, res, next) =>{
     try{
         const {id} = req.params;
-        const userId = req.user.id;
+        const userId = 2;
         const subscribe = await db.Course_Student.create({
             studentId: userId,
             courseId : id
         });
-        
+        console.log('SubBBBBBBBB',subscribe)
         res.status(201).json(subscribe);
     }
     catch(err) {
