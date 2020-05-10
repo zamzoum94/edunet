@@ -33,7 +33,7 @@ export default class FeatureCategory extends React.Component {
                 {this.state.categories.map((element,idx) =>{
                     return(
                         <div className='col-md-2 categoryBorder'>
-                            <Link to='searchbycategory/marketing'><h2>{element}</h2></Link>
+                            <Link to={'searchbycategory/'+(idx+1)}><h2>{element}</h2></Link>
                         </div>
                     )
                 })

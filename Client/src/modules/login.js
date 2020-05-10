@@ -1,7 +1,6 @@
 import React from 'react';
 export default class Login extends React.Component{
     constructor(props){
-        console.log('hiiiiiiiiiii', props.user);
         super(props);
         this.state={
             email: null,

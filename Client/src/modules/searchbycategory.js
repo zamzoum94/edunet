@@ -5,8 +5,8 @@ export default class SearchByCategory extends React.Component{
     constructor(props){
         super(props);
         
-        this.category = props.match.params.category;
         this.state ={
+            category : props.match.params.category, 
             output : null
         }
         this.fetchData();
@@ -14,7 +14,7 @@ export default class SearchByCategory extends React.Component{
 
 
     fetchData(){
-        fetch(`http://localhost:8080/category/${this.category}`, {
+        fetch(`http://localhost:8080/courses`, {
             method : 'GET'
         })
         .then(response =>{
@@ -26,13 +26,26 @@ export default class SearchByCategory extends React.Component{
         })
     }
 
+    filterData(data){
+        let answer = [];
+        for(let i = 0; i < data.length; ++i){
+            if(data[i].categoryId == this.state.category){
+                answer.push(data[i]);
+            }
+        }
+        return answer;
+    }
+
     constructDiv(data){
+        data = this.filterData(data);
         return(
             <div className='row'>
                 {data.map((element, key)=>{
                     return(
                         <div className='col-md-4' key={key}>
-                            <h2>{element.title}</h2>
+                            <Link to={'/course/' + element.id}>    
+                                <h2>{element.title}</h2>
+                            </Link>
                         </div>
                     )
                 })}
