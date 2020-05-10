@@ -32,7 +32,11 @@ export default class Search extends React.Component{
         <div className='row'>
             {
             this.state.data === null ? '' : (this.state.data)
-            .filter(element =>  element.title  === this.state.target)
+            .filter((element) => {
+                console.log(element.title +'      '+this.state.target)
+                if(element.title === null) return false;
+                return element.title.toLowerCase().indexOf(this.state.target.toLowerCase()) !== -1;
+            })
             .map((element2, index)=>{
                 return(
                     <div className='col-md-4'>

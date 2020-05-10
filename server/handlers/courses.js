@@ -46,10 +46,10 @@ exports.getCourse = async (req, res, next) => {
             res.status(404).json(" No course with this id")
         }
         else{
-
+            const video = await db.Video.findAll({where : {courseId : id}});
             const teacher = await  db.Teacher.findOne({where: {id : course.teacherId}});
             const category = await db.Category.findOne({where: {id : course.categoryId}});
-            res.status(200).json({teacher , course, category})
+            res.status(200).json({teacher , course, category, video})
         }
     }
     catch(err){
@@ -93,7 +93,7 @@ exports.showCourseVideos = async (req,res,next)=>{
 exports.enroll = async(req, res, next) =>{
     try{
         const {id} = req.params;
-        const userId = 2;
+        const userId = req.user.id;
         const subscribe = await db.Course_Student.create({
             studentId: userId,
             courseId : id

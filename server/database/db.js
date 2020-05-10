@@ -28,12 +28,6 @@ const student = sql.define('student',{
 });
 
 
-/*const university = sql.define('University', {
-    name : {
-        type: db.STRING,
-        unique : true
-    }
-});*/
 
 const teacher = sql.define('teacher',{
     first_name : db.STRING,
@@ -112,8 +106,9 @@ course.belongsToMany(student, {through: course_student});
 
 course.belongsTo(teacher);
 teacher.hasMany(course, {foreignKey: "teacherId"});
+
 video.belongsTo(course);
-course.hasMany(video);
+course.hasMany(video, {foreignKey: "courseId"});
 
 /*teacher.belongsTo(university);
 university.hasMany(teacher);*/
