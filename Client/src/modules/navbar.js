@@ -12,7 +12,6 @@ export default class Navbar extends React.Component{
             value : '',
             user : props.user
         }
-        console.log('prrrrrrrrrrrrrooooooooops',props)
     }
 
     componentWillReceiveProps(nextProps){

@@ -29,7 +29,6 @@ export default class Register extends React.Component{
     handlSubmit(event){
         event.preventDefault();
         let user = this.state;
-        console.log(user);
         fetch("http://localhost:8080/auth/signup",{
             method : 'POST',
             headers : {

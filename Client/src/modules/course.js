@@ -36,8 +36,6 @@ export default class Course extends React.Component{
         .then(response =>{
             return response.text()
         }).then(data =>{
-            alert(data)
-            console.log(JSON.parse(data));
             this.setState({
                 data : JSON.parse(data)
             })
@@ -54,13 +52,13 @@ export default class Course extends React.Component{
             }
         })
         .then(response=>{
-            return response.json()
+            console.log(response)
+            return response.text()
         })  
         .then(docs=>{
-            console.log(JSON.parse(docs))
         })
         .catch(err=>{
-            console.log(err)
+            console.log('error',err)
         })
     }
 

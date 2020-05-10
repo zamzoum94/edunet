@@ -1,14 +1,13 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-export default class SudentProfile extends React.Component{
+export default class StudentProfile extends React.Component{
     constructor(props){
         super(props);
         this.state = {
             id : props.match.params.id,
             output : null
         }
-        console.log(props.match.params.id);
         this.fetchData()
     }
 
@@ -20,11 +19,11 @@ export default class SudentProfile extends React.Component{
                 'Authorization' : `Bearer ${localStorage.getItem('token')}`
             }
         }).then(docs=>{
-            return docs.json()
+            return docs.text()
         })
         .then(data=>{
             this.setState({
-                output : data
+                output : JSON.parse(data)
             })
         }).catch(err=>{
             window.location.href = 'http://localhost:3000'
@@ -48,15 +47,7 @@ export default class SudentProfile extends React.Component{
                         <div className='row'>
                             <div className='col-md-6'>
                                 <h2>Student Courses</h2>
-                                {this.state.output === null ? '' : this.state.output.subscribe.map((element, key)=>{
-                                    return(
-                                        <div className='row' key={key}>
-                                            <div className='col-md'>
-                                                <Link to={`/course/${element.id}`}><h2>{element.title}</h2></Link>
-                                            </div>
-                                        </div>
-                                    )
-                                })}
+                                {this.state.output === null ? '': this.state.output.subscribe.title}
                             </div>
                         </div>
                     </div>
