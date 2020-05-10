@@ -1,6 +1,6 @@
 const db = require('sequelize');
 
-const sql = new db('edunet','root', '' ,{dialect: 'mysql'});
+const sql = new db('edunet','root', 'root' ,{dialect: 'mysql'});
 
 const student = sql.define('student',{
     first_name : db.STRING,
