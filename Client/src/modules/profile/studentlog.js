@@ -22,13 +22,12 @@ export default class StudentProfile extends React.Component{
             return docs.text()
         })
         .then(data=>{
-            console.log(data)
+            console.log(JSON.parse(data))
             this.setState({
                 output : JSON.parse(data)
             })
         }).catch(err=>{
-            console.log(err)
-           // window.location.href = 'http://localhost:3000'
+            //window.location.href = 'http://localhost:3000'
         })
     }
 
@@ -49,7 +48,19 @@ export default class StudentProfile extends React.Component{
                         <div className='row'>
                             <div className='col-md-6'>
                                 <h2>Student Courses</h2>
-                                {this.state.output === null ? '': this.state.output.subscribe.title}
+                                {this.state.output === null ? '': 
+                                    this.state.output.query.map((element, index)=>{
+                                        return(
+                                            <div className='row'>
+                                                <div className='col-md-4'>
+                                                    <Link to={'/course/'+element.id}>
+                                                        {element.title}
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
                             </div>
                         </div>
                     </div>

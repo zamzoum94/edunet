@@ -31,7 +31,7 @@ export default class Course extends React.Component{
 
     fetchData(){
         fetch(`http://localhost:8080/courses/${this.state.id}`, {
-            method : 'GET'
+            method : 'GET',
         })
         .then(response =>{
             return response.text()
@@ -39,7 +39,7 @@ export default class Course extends React.Component{
             this.setState({
                 data : JSON.parse(data)
             })
-            
+            console.log(JSON.parse(data))    
         })
     }
 
@@ -65,7 +65,8 @@ export default class Course extends React.Component{
     render(){
         return(
             <div>
-                {localStorage.getItem('token') === null ? '' : 
+                {localStorage.getItem('token') === null ? '' :
+
                 <div className='row'>
                     <div className='col-md-2'>
                         <button className='btn btn-success' onClick={this.enroll.bind(this)}>Enroll</button>
@@ -88,7 +89,7 @@ export default class Course extends React.Component{
                         <div className="tab-content">
                         <div className="tab-pane container active" id="description">
                             <div className="card">
-                                <img src={obj.description.img} className="card-img-top" alt="..."></img>
+                                <img src={this.state.data === null ? '' : this.state.data.course.photo} className="card-img-top" alt="..."></img>
                                 <div className="card-body">
                                     <h5 className="card-title">{this.state.data !== null ? this.state.data.course.title: ''}</h5>
                                     <p className="card-text">{this.state.data !== null ? this.state.data.course.description: ''}</p>
@@ -99,7 +100,7 @@ export default class Course extends React.Component{
                             <div className="card">
                                 <img src={this.state.data !== null ? this.state.data.teacher.photo : ''} className="card-img-top rounded-circle" alt="..."></img>
                                 <div className="card-body">
-                                    <Link to={`/teacher/${this.state.data !== null ? this.state.data.teacher.id : 0}`}>
+                                    <Link to={`/teacher/${this.state.data !== null ? this.state.data.teacher.id : ''}`}>
                                         <h5 className="card-title">
                                             {this.state.data !== null ? (this.state.data.teacher.first_name + ' '+ this.state.data.teacher.last_name) : ''}
                                         </h5>
