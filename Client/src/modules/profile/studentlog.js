@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-export default class SudentProfile extends React.Component{
+export default class StudentProfile extends React.Component{
     constructor(props){
         super(props);
         this.state = {
@@ -23,11 +23,13 @@ export default class SudentProfile extends React.Component{
             return docs.json()
         })
         .then(data=>{
+            console.log(data)
             this.setState({
                 output : data
             })
         }).catch(err=>{
-            window.location.href = 'http://localhost:3000'
+            console.log(err)
+           // window.location.href = 'http://localhost:3000'
         })
     }
 
