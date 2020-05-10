@@ -94,7 +94,7 @@ exports.showCourseVideos = async (req,res,next)=>{
 exports.enroll = async(req, res, next) =>{
     try{
         const {id} = req.params;
-        const userId = 2;
+        const userId = req.user.id;
         const subscribe = await db.Course_Student.create({
             studentId: userId,
             courseId : id
