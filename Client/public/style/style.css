@@ -1,26 +1,110 @@
-.categoryBorder {
-    border: solid;
-    border-width: 1px;
-    height: 200px;
-    margin-left: 30px;
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color:black;
+    color: goldenrod;
+    
+
+    
+}
+#videoBG {
+
+  right: 0;
+  bottom: 0;
+  min-width: 100vw;
+  max-height: 500px;
+  object-fit: cover;
+}
+  .content {
+  bottom: 0;
+  color: #f1f1f1;
+  width: 100vw;
+
 }
 
-.featureCategory{
-    height: 300px;
+
+.navbar{
+    background:linear-gradient(125deg, #00AEEF, #1D60AA, #302C7B,  #3A1264);
+    background-size: 400%;
+    animation: colorSpin 15s  infinite;
+    border: none;  
+    margin-bottom: 0px;
 }
 
-.featureTeachers{
-    height: 450px;
+ .navbar-nav>li>a {
+    color: white;
 }
 
-.featureCourses{
-    height: 400px;
+.navbar-dark.nav-item.active .nav-link,
+.navbar-dark .nav-item:focus .nav-link,
+.navbar-dark .nav-item:hover .nav-link{
+    background-color: white;
+    color: #3A1264;
+    font-weight: 700;
+    border-radius: 10px 0 0 0;
+
+}
+@keyframes colorSpin{
+    25%{background-position: 0 50%}
+    50%{background-position: 100% 50%}
+  100%{background-position: 0 50%}
+  }
+
+
+
+
+
+
+
+.card{
+    display: grid;
+    grid-template-columns: 300px;
+    grid-template-rows: 210px 120px 80px;
+    grid-template-areas: "image" "text" "stat";
+    font-family: roboto;
+    border-radius: 18px;
+    background: rgba(6, 65, 105, 0.144);
+    box-shadow: 5px 5px 15px goldenrod;
+    text-align: center;
+    
+}
+a:link, a:visited{
+    color: white;
+    
+    text-decoration: none;
+
+}
+.card-img-top{
+   grid-area: image;
+   border-top-left-radius: 15px ;
+   border-top-left-radius: 15px;
+   background-size: cover;
+    max-height: 180px;
+    max-width: 180px;
+    margin-left: 30%;
+    
+    
+    border-radius: 10%;
+    border: transparent;
+
+
+}
+.card-title{
+    grid-area: text;
+    margin: 25px;
+    color: goldenrod;
+    font-size: 16px;
+    font-weight: 300;
+    
+
+}
+.card-text{
+    grid-area: stats;
 }
 
-.featureForm{    
-    height: 400px;
+.col-md-2 categoryBorder{
+    border: 1px solid white;
 }
 
-.featureChoose{
-    height: 100px;
-}

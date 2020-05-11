@@ -37,11 +37,11 @@ export default class FeatureCourses extends React.Component {
                         return(
                             <div className="col-md-3 ml-5">
                                 <Link to={`/course/${element.id}`}>
-                                    <div className="card">
+                                    <div className="card ">
                                         <img className ="card-img-top" src="https://smartmobilestudio.com/wp-content/uploads/2012/06/leather-book-preview.png"></img>
                                         <div className="card-body">
                                             <h5 className="card-title">{element.title}</h5>
-                                            <p className="card-text">{element.description}</p>
+                                            <p className="card-text">{element.description.substring(0,100)}</p>
                                         </div>
                                     </div>
                                 </Link>
