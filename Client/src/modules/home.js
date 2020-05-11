@@ -16,6 +16,10 @@ export default class Home extends React.Component {
     render(){
         return(
             <div>
+                  
+              <video id="videoBG"  autoPlay muted  loop
+              src="./style/vid1.mp4" type="video/mp4"/>
+              <div className="content"><h1>Edunet</h1></div>
                 <FeatureTeachers/>
                 <FeatureCourses/>
                 <FeatureCategory/>

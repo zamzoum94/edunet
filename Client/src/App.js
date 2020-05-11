@@ -53,8 +53,12 @@ export default class App  extends React.Component {
   render(){
     return (
       <BrowserRouter>
-        <div className='container'>
+        <div >
           <Navbar user={this.state} logout={this.logout.bind(this)} login={this.loggedIn.bind(this)}/>
+
+   
+          
+
           <Route exact path='/' component={Home}></Route>
           <Route path='/teachers' component={Teachers}></Route>
           <Route path='/courses' component={Courses}></Route>

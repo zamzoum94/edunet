@@ -11,15 +11,15 @@ export default class ChooseUs extends React.Component{
                     </ol>
                     <div className="carousel-inner">
                         <div className="carousel-item active">
-                        <img src="https://d194ip2226q57d.cloudfront.net/images/Best-Float-Trips_Niangua_CO-Shutterstock.original.jpg
+                        <img src="https://news.cgtn.com/news/7867444e78516a4e3441544d3259544d7849444f31457a6333566d54/img/99f3ebeb55da41c1a10bddb82897e339/99f3ebeb55da41c1a10bddb82897e339.jpg
 " className="d-block w-100" alt="..."></img>
                         <div className="carousel-caption d-none d-md-block">
-                            <h5>First slide label</h5>
+                            <h5>why choose us</h5>
                             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                         </div>
                         </div>
                         <div className="carousel-item">
-                        <img src="https://d194ip2226q57d.cloudfront.net/images/Best-Float-Trips_Niangua_CO-Shutterstock.original.jpg
+                        <img src="https://i.ytimg.com/vi/gzYjTGEMn7A/maxresdefault.jpg
 " className="d-block w-100" alt="..."></img>
                         <div className="carousel-caption d-none d-md-block">
                             <h5>Second slide label</h5>
@@ -27,7 +27,7 @@ export default class ChooseUs extends React.Component{
                         </div>
                         </div>
                         <div className="carousel-item">
-                        <img src="https://d194ip2226q57d.cloudfront.net/images/Best-Float-Trips_Niangua_CO-Shutterstock.original.jpg
+                        <img src="https://about.udemy.com/wp-content/themes/wp-about/assets/images/ufb-company-08.svg
 " className="d-block w-100" alt="..."></img>
                         <div className="carousel-caption d-none d-md-block">
                             <h5>Third slide label</h5>
