@@ -12,7 +12,6 @@ export default class StudentProfile extends React.Component{
     }
 
     fetchData(){
-        console.log(this.state.id)
         fetch(`http://localhost:8080/students/${this.state.id}`, {
             type : 'GET',
             headers :{
@@ -27,7 +26,6 @@ export default class StudentProfile extends React.Component{
             })
         }).catch(err=>{
             window.location.href = 'http://localhost:3000'
-
         })
     }
 
