@@ -14,7 +14,7 @@ exports.getCoursesEnrolled = async (req, res, next) => {
         res.status(201).json({query, student});
     }
     catch(err) {
-        res.status(400);
+        res.status(400)
         next(err)
     }
 };
